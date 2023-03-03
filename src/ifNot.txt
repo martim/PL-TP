@@ -1,0 +1,9 @@
+int a
+int b
+read a
+read b
+if(not a > b){
+    print 1000
+} else {
+    print 2000
+}

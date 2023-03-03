@@ -1,0 +1,5 @@
+int a,c=3
+print a
+print c
+read a
+print a*c

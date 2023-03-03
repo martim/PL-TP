@@ -1,0 +1,7 @@
+int soma = 0, n, i
+read n
+for(i = 1; i <= n; i = i + 1)
+do{
+    soma = soma + i
+}
+print soma

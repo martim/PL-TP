@@ -1,0 +1,29 @@
+    PUSHI 0
+    PUSHI 0
+START
+    READ
+    ATOI    
+    STOREG 1
+    
+CICLO1:
+    
+    PUSHG 1
+    PUSHI 0
+    EQUAL
+    NOT 
+    JZ FIMCICLO1
+    
+    READ
+    ATOI    
+    STOREG 1
+
+    PUSHG 1
+    PUSHG 0
+    ADD
+    STOREG 0
+    JUMP CICLO1
+
+FIMCICLO1:
+    PUSHG 0
+    WRITEI
+STOP

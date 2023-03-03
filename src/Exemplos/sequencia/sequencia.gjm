@@ -1,0 +1,11 @@
+int i = 1, n, totalImpar = 0
+read n
+while(i <= n)
+do {
+    if (not i % 2 == 0){
+        totalImpar = totalImpar + 1
+        print i
+    }
+    i = i + 1
+}
+print totalImpar

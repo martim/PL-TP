@@ -1,0 +1,6 @@
+int dummy[3]
+int lista[10]
+int a
+lista[2] = 7
+print lista[2]
+print dummy[1]

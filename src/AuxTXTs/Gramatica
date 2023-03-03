@@ -1,0 +1,32 @@
+S -> BlocoVar BlocoPrograma
+
+BlocoVar -> Var BlocoVar
+        |   з
+
+Var -> int id
+    |   int id '=' num
+    |   з
+
+BlocoPrograma -> Programa
+
+
+Programa -> Ler
+        |   Escrever
+        |   Atrib
+        |   Fluxo
+        |   Ciclo
+
+
+Escrever -> print Exp
+
+Exp -> Exp '+' Termo
+     | Exp '-' Termo
+     | Termo
+
+Termo -> Termo '*' Factor
+       |  Termo '/' Factor
+       | Factor
+
+Factor -> '(' Exp ')'
+        | num
+        | id

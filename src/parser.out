@@ -1,0 +1,2707 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> S
+Rule 1     S -> BlocoDecl BlocoPrograma
+Rule 2     BlocoDecl -> Decl BlocoDecl
+Rule 3     BlocoDecl -> <empty>
+Rule 4     Decl -> int AtribList
+Rule 5     AtribList -> AtribDecl ContAtrib
+Rule 6     ContAtrib -> , AtribDecl ContAtrib
+Rule 7     ContAtrib -> <empty>
+Rule 8     AtribDecl -> id Atribution
+Rule 9     AtribDecl -> id [ num ]
+Rule 10    Atribution -> = Exp
+Rule 11    Atribution -> <empty>
+Rule 12    BlocoPrograma -> Programa BlocoPrograma
+Rule 13    BlocoPrograma -> <empty>
+Rule 14    Programa -> Ler
+Rule 15    Programa -> Escrever
+Rule 16    Programa -> AtribProg
+Rule 17    Programa -> If
+Rule 18    Programa -> While
+Rule 19    Programa -> Repeat
+Rule 20    Programa -> For
+Rule 21    Ler -> read id
+Rule 22    Ler -> read id [ Exp ]
+Rule 23    Escrever -> print RelExp
+Rule 24    AtribProg -> id = Exp
+Rule 25    AtribProg -> id [ Exp ] = Exp
+Rule 26    If -> if ( Cond ) { BlocoPrograma } Else
+Rule 27    Else -> else { BlocoPrograma }
+Rule 28    Else -> <empty>
+Rule 29    While -> while ( Cond ) do { BlocoPrograma }
+Rule 30    Repeat -> repeat { BlocoPrograma } until Cond
+Rule 31    For -> for ( AtribFor ; Cond ; AtribProg ) do { BlocoPrograma }
+Rule 32    AtribFor -> AtribProg
+Rule 33    AtribFor -> <empty>
+Rule 34    Cond -> Cond or Cond2
+Rule 35    Cond -> Cond2
+Rule 36    Cond2 -> Cond2 and Cond3
+Rule 37    Cond2 -> Cond3
+Rule 38    Cond3 -> not Cond
+Rule 39    Cond3 -> RelExp
+Rule 40    Cond3 -> ( Cond )
+Rule 41    RelExp -> Exp > Exp
+Rule 42    RelExp -> Exp < Exp
+Rule 43    RelExp -> Exp Meq Exp
+Rule 44    RelExp -> Exp meq Exp
+Rule 45    RelExp -> Exp dif Exp
+Rule 46    RelExp -> Exp eq Exp
+Rule 47    RelExp -> Exp
+Rule 48    Exp -> Exp + Termo
+Rule 49    Exp -> Exp - Termo
+Rule 50    Exp -> Termo
+Rule 51    Termo -> Termo * Factor
+Rule 52    Termo -> Termo / Factor
+Rule 53    Termo -> Termo % Factor
+Rule 54    Termo -> Factor
+Rule 55    Factor -> ( Exp )
+Rule 56    Factor -> num
+Rule 57    Factor -> id
+Rule 58    Factor -> id [ Exp ]
+
+Terminals, with rules where they appear
+
+%                    : 53
+(                    : 26 29 31 40 55
+)                    : 26 29 31 40 55
+*                    : 51
++                    : 48
+,                    : 6
+-                    : 49
+/                    : 52
+;                    : 31 31
+<                    : 42
+=                    : 10 24 25
+>                    : 41
+Meq                  : 43
+[                    : 9 22 25 58
+]                    : 9 22 25 58
+and                  : 36
+dif                  : 45
+do                   : 29 31
+else                 : 27
+eq                   : 46
+error                : 
+for                  : 31
+id                   : 8 9 21 22 24 25 57 58
+if                   : 26
+int                  : 4
+meq                  : 44
+not                  : 38
+num                  : 9 56
+or                   : 34
+print                : 23
+read                 : 21 22
+repeat               : 30
+until                : 30
+while                : 29
+{                    : 26 27 29 30 31
+}                    : 26 27 29 30 31
+
+Nonterminals, with rules where they appear
+
+AtribDecl            : 5 6
+AtribFor             : 31
+AtribList            : 4
+AtribProg            : 16 31 32
+Atribution           : 8
+BlocoDecl            : 1 2
+BlocoPrograma        : 1 12 26 27 29 30 31
+Cond                 : 26 29 30 31 34 38 40
+Cond2                : 34 35 36
+Cond3                : 36 37
+ContAtrib            : 5 6
+Decl                 : 2
+Else                 : 26
+Escrever             : 15
+Exp                  : 10 22 24 25 25 41 41 42 42 43 43 44 44 45 45 46 46 47 48 49 55 58
+Factor               : 51 52 53 54
+For                  : 20
+If                   : 17
+Ler                  : 14
+Programa             : 12
+RelExp               : 23 39
+Repeat               : 19
+S                    : 0
+Termo                : 48 49 50 51 52 53
+While                : 18
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . S
+    (1) S -> . BlocoDecl BlocoPrograma
+    (2) BlocoDecl -> . Decl BlocoDecl
+    (3) BlocoDecl -> .
+    (4) Decl -> . int AtribList
+
+    read            reduce using rule 3 (BlocoDecl -> .)
+    print           reduce using rule 3 (BlocoDecl -> .)
+    id              reduce using rule 3 (BlocoDecl -> .)
+    if              reduce using rule 3 (BlocoDecl -> .)
+    while           reduce using rule 3 (BlocoDecl -> .)
+    repeat          reduce using rule 3 (BlocoDecl -> .)
+    for             reduce using rule 3 (BlocoDecl -> .)
+    $end            reduce using rule 3 (BlocoDecl -> .)
+    int             shift and go to state 4
+
+    S                              shift and go to state 1
+    BlocoDecl                      shift and go to state 2
+    Decl                           shift and go to state 3
+
+state 1
+
+    (0) S' -> S .
+
+
+
+state 2
+
+    (1) S -> BlocoDecl . BlocoPrograma
+    (12) BlocoPrograma -> . Programa BlocoPrograma
+    (13) BlocoPrograma -> .
+    (14) Programa -> . Ler
+    (15) Programa -> . Escrever
+    (16) Programa -> . AtribProg
+    (17) Programa -> . If
+    (18) Programa -> . While
+    (19) Programa -> . Repeat
+    (20) Programa -> . For
+    (21) Ler -> . read id
+    (22) Ler -> . read id [ Exp ]
+    (23) Escrever -> . print RelExp
+    (24) AtribProg -> . id = Exp
+    (25) AtribProg -> . id [ Exp ] = Exp
+    (26) If -> . if ( Cond ) { BlocoPrograma } Else
+    (29) While -> . while ( Cond ) do { BlocoPrograma }
+    (30) Repeat -> . repeat { BlocoPrograma } until Cond
+    (31) For -> . for ( AtribFor ; Cond ; AtribProg ) do { BlocoPrograma }
+
+    $end            reduce using rule 13 (BlocoPrograma -> .)
+    read            shift and go to state 14
+    print           shift and go to state 16
+    id              shift and go to state 15
+    if              shift and go to state 17
+    while           shift and go to state 18
+    repeat          shift and go to state 19
+    for             shift and go to state 20
+
+    BlocoPrograma                  shift and go to state 5
+    Programa                       shift and go to state 6
+    Ler                            shift and go to state 7
+    Escrever                       shift and go to state 8
+    AtribProg                      shift and go to state 9
+    If                             shift and go to state 10
+    While                          shift and go to state 11
+    Repeat                         shift and go to state 12
+    For                            shift and go to state 13
+
+state 3
+
+    (2) BlocoDecl -> Decl . BlocoDecl
+    (2) BlocoDecl -> . Decl BlocoDecl
+    (3) BlocoDecl -> .
+    (4) Decl -> . int AtribList
+
+    read            reduce using rule 3 (BlocoDecl -> .)
+    print           reduce using rule 3 (BlocoDecl -> .)
+    id              reduce using rule 3 (BlocoDecl -> .)
+    if              reduce using rule 3 (BlocoDecl -> .)
+    while           reduce using rule 3 (BlocoDecl -> .)
+    repeat          reduce using rule 3 (BlocoDecl -> .)
+    for             reduce using rule 3 (BlocoDecl -> .)
+    $end            reduce using rule 3 (BlocoDecl -> .)
+    int             shift and go to state 4
+
+    Decl                           shift and go to state 3
+    BlocoDecl                      shift and go to state 21
+
+state 4
+
+    (4) Decl -> int . AtribList
+    (5) AtribList -> . AtribDecl ContAtrib
+    (8) AtribDecl -> . id Atribution
+    (9) AtribDecl -> . id [ num ]
+
+    id              shift and go to state 24
+
+    AtribList                      shift and go to state 22
+    AtribDecl                      shift and go to state 23
+
+state 5
+
+    (1) S -> BlocoDecl BlocoPrograma .
+
+    $end            reduce using rule 1 (S -> BlocoDecl BlocoPrograma .)
+
+
+state 6
+
+    (12) BlocoPrograma -> Programa . BlocoPrograma
+    (12) BlocoPrograma -> . Programa BlocoPrograma
+    (13) BlocoPrograma -> .
+    (14) Programa -> . Ler
+    (15) Programa -> . Escrever
+    (16) Programa -> . AtribProg
+    (17) Programa -> . If
+    (18) Programa -> . While
+    (19) Programa -> . Repeat
+    (20) Programa -> . For
+    (21) Ler -> . read id
+    (22) Ler -> . read id [ Exp ]
+    (23) Escrever -> . print RelExp
+    (24) AtribProg -> . id = Exp
+    (25) AtribProg -> . id [ Exp ] = Exp
+    (26) If -> . if ( Cond ) { BlocoPrograma } Else
+    (29) While -> . while ( Cond ) do { BlocoPrograma }
+    (30) Repeat -> . repeat { BlocoPrograma } until Cond
+    (31) For -> . for ( AtribFor ; Cond ; AtribProg ) do { BlocoPrograma }
+
+    $end            reduce using rule 13 (BlocoPrograma -> .)
+    }               reduce using rule 13 (BlocoPrograma -> .)
+    read            shift and go to state 14
+    print           shift and go to state 16
+    id              shift and go to state 15
+    if              shift and go to state 17
+    while           shift and go to state 18
+    repeat          shift and go to state 19
+    for             shift and go to state 20
+
+    Programa                       shift and go to state 6
+    BlocoPrograma                  shift and go to state 25
+    Ler                            shift and go to state 7
+    Escrever                       shift and go to state 8
+    AtribProg                      shift and go to state 9
+    If                             shift and go to state 10
+    While                          shift and go to state 11
+    Repeat                         shift and go to state 12
+    For                            shift and go to state 13
+
+state 7
+
+    (14) Programa -> Ler .
+
+    read            reduce using rule 14 (Programa -> Ler .)
+    print           reduce using rule 14 (Programa -> Ler .)
+    id              reduce using rule 14 (Programa -> Ler .)
+    if              reduce using rule 14 (Programa -> Ler .)
+    while           reduce using rule 14 (Programa -> Ler .)
+    repeat          reduce using rule 14 (Programa -> Ler .)
+    for             reduce using rule 14 (Programa -> Ler .)
+    $end            reduce using rule 14 (Programa -> Ler .)
+    }               reduce using rule 14 (Programa -> Ler .)
+
+
+state 8
+
+    (15) Programa -> Escrever .
+
+    read            reduce using rule 15 (Programa -> Escrever .)
+    print           reduce using rule 15 (Programa -> Escrever .)
+    id              reduce using rule 15 (Programa -> Escrever .)
+    if              reduce using rule 15 (Programa -> Escrever .)
+    while           reduce using rule 15 (Programa -> Escrever .)
+    repeat          reduce using rule 15 (Programa -> Escrever .)
+    for             reduce using rule 15 (Programa -> Escrever .)
+    $end            reduce using rule 15 (Programa -> Escrever .)
+    }               reduce using rule 15 (Programa -> Escrever .)
+
+
+state 9
+
+    (16) Programa -> AtribProg .
+
+    read            reduce using rule 16 (Programa -> AtribProg .)
+    print           reduce using rule 16 (Programa -> AtribProg .)
+    id              reduce using rule 16 (Programa -> AtribProg .)
+    if              reduce using rule 16 (Programa -> AtribProg .)
+    while           reduce using rule 16 (Programa -> AtribProg .)
+    repeat          reduce using rule 16 (Programa -> AtribProg .)
+    for             reduce using rule 16 (Programa -> AtribProg .)
+    $end            reduce using rule 16 (Programa -> AtribProg .)
+    }               reduce using rule 16 (Programa -> AtribProg .)
+
+
+state 10
+
+    (17) Programa -> If .
+
+    read            reduce using rule 17 (Programa -> If .)
+    print           reduce using rule 17 (Programa -> If .)
+    id              reduce using rule 17 (Programa -> If .)
+    if              reduce using rule 17 (Programa -> If .)
+    while           reduce using rule 17 (Programa -> If .)
+    repeat          reduce using rule 17 (Programa -> If .)
+    for             reduce using rule 17 (Programa -> If .)
+    $end            reduce using rule 17 (Programa -> If .)
+    }               reduce using rule 17 (Programa -> If .)
+
+
+state 11
+
+    (18) Programa -> While .
+
+    read            reduce using rule 18 (Programa -> While .)
+    print           reduce using rule 18 (Programa -> While .)
+    id              reduce using rule 18 (Programa -> While .)
+    if              reduce using rule 18 (Programa -> While .)
+    while           reduce using rule 18 (Programa -> While .)
+    repeat          reduce using rule 18 (Programa -> While .)
+    for             reduce using rule 18 (Programa -> While .)
+    $end            reduce using rule 18 (Programa -> While .)
+    }               reduce using rule 18 (Programa -> While .)
+
+
+state 12
+
+    (19) Programa -> Repeat .
+
+    read            reduce using rule 19 (Programa -> Repeat .)
+    print           reduce using rule 19 (Programa -> Repeat .)
+    id              reduce using rule 19 (Programa -> Repeat .)
+    if              reduce using rule 19 (Programa -> Repeat .)
+    while           reduce using rule 19 (Programa -> Repeat .)
+    repeat          reduce using rule 19 (Programa -> Repeat .)
+    for             reduce using rule 19 (Programa -> Repeat .)
+    $end            reduce using rule 19 (Programa -> Repeat .)
+    }               reduce using rule 19 (Programa -> Repeat .)
+
+
+state 13
+
+    (20) Programa -> For .
+
+    read            reduce using rule 20 (Programa -> For .)
+    print           reduce using rule 20 (Programa -> For .)
+    id              reduce using rule 20 (Programa -> For .)
+    if              reduce using rule 20 (Programa -> For .)
+    while           reduce using rule 20 (Programa -> For .)
+    repeat          reduce using rule 20 (Programa -> For .)
+    for             reduce using rule 20 (Programa -> For .)
+    $end            reduce using rule 20 (Programa -> For .)
+    }               reduce using rule 20 (Programa -> For .)
+
+
+state 14
+
+    (21) Ler -> read . id
+    (22) Ler -> read . id [ Exp ]
+
+    id              shift and go to state 26
+
+
+state 15
+
+    (24) AtribProg -> id . = Exp
+    (25) AtribProg -> id . [ Exp ] = Exp
+
+    =               shift and go to state 27
+    [               shift and go to state 28
+
+
+state 16
+
+    (23) Escrever -> print . RelExp
+    (41) RelExp -> . Exp > Exp
+    (42) RelExp -> . Exp < Exp
+    (43) RelExp -> . Exp Meq Exp
+    (44) RelExp -> . Exp meq Exp
+    (45) RelExp -> . Exp dif Exp
+    (46) RelExp -> . Exp eq Exp
+    (47) RelExp -> . Exp
+    (48) Exp -> . Exp + Termo
+    (49) Exp -> . Exp - Termo
+    (50) Exp -> . Termo
+    (51) Termo -> . Termo * Factor
+    (52) Termo -> . Termo / Factor
+    (53) Termo -> . Termo % Factor
+    (54) Termo -> . Factor
+    (55) Factor -> . ( Exp )
+    (56) Factor -> . num
+    (57) Factor -> . id
+    (58) Factor -> . id [ Exp ]
+
+    (               shift and go to state 33
+    num             shift and go to state 34
+    id              shift and go to state 35
+
+    RelExp                         shift and go to state 29
+    Exp                            shift and go to state 30
+    Termo                          shift and go to state 31
+    Factor                         shift and go to state 32
+
+state 17
+
+    (26) If -> if . ( Cond ) { BlocoPrograma } Else
+
+    (               shift and go to state 36
+
+
+state 18
+
+    (29) While -> while . ( Cond ) do { BlocoPrograma }
+
+    (               shift and go to state 37
+
+
+state 19
+
+    (30) Repeat -> repeat . { BlocoPrograma } until Cond
+
+    {               shift and go to state 38
+
+
+state 20
+
+    (31) For -> for . ( AtribFor ; Cond ; AtribProg ) do { BlocoPrograma }
+
+    (               shift and go to state 39
+
+
+state 21
+
+    (2) BlocoDecl -> Decl BlocoDecl .
+
+    read            reduce using rule 2 (BlocoDecl -> Decl BlocoDecl .)
+    print           reduce using rule 2 (BlocoDecl -> Decl BlocoDecl .)
+    id              reduce using rule 2 (BlocoDecl -> Decl BlocoDecl .)
+    if              reduce using rule 2 (BlocoDecl -> Decl BlocoDecl .)
+    while           reduce using rule 2 (BlocoDecl -> Decl BlocoDecl .)
+    repeat          reduce using rule 2 (BlocoDecl -> Decl BlocoDecl .)
+    for             reduce using rule 2 (BlocoDecl -> Decl BlocoDecl .)
+    $end            reduce using rule 2 (BlocoDecl -> Decl BlocoDecl .)
+
+
+state 22
+
+    (4) Decl -> int AtribList .
+
+    int             reduce using rule 4 (Decl -> int AtribList .)
+    read            reduce using rule 4 (Decl -> int AtribList .)
+    print           reduce using rule 4 (Decl -> int AtribList .)
+    id              reduce using rule 4 (Decl -> int AtribList .)
+    if              reduce using rule 4 (Decl -> int AtribList .)
+    while           reduce using rule 4 (Decl -> int AtribList .)
+    repeat          reduce using rule 4 (Decl -> int AtribList .)
+    for             reduce using rule 4 (Decl -> int AtribList .)
+    $end            reduce using rule 4 (Decl -> int AtribList .)
+
+
+state 23
+
+    (5) AtribList -> AtribDecl . ContAtrib
+    (6) ContAtrib -> . , AtribDecl ContAtrib
+    (7) ContAtrib -> .
+
+    ,               shift and go to state 41
+    int             reduce using rule 7 (ContAtrib -> .)
+    read            reduce using rule 7 (ContAtrib -> .)
+    print           reduce using rule 7 (ContAtrib -> .)
+    id              reduce using rule 7 (ContAtrib -> .)
+    if              reduce using rule 7 (ContAtrib -> .)
+    while           reduce using rule 7 (ContAtrib -> .)
+    repeat          reduce using rule 7 (ContAtrib -> .)
+    for             reduce using rule 7 (ContAtrib -> .)
+    $end            reduce using rule 7 (ContAtrib -> .)
+
+    ContAtrib                      shift and go to state 40
+
+state 24
+
+    (8) AtribDecl -> id . Atribution
+    (9) AtribDecl -> id . [ num ]
+    (10) Atribution -> . = Exp
+    (11) Atribution -> .
+
+    [               shift and go to state 43
+    =               shift and go to state 44
+    ,               reduce using rule 11 (Atribution -> .)
+    int             reduce using rule 11 (Atribution -> .)
+    read            reduce using rule 11 (Atribution -> .)
+    print           reduce using rule 11 (Atribution -> .)
+    id              reduce using rule 11 (Atribution -> .)
+    if              reduce using rule 11 (Atribution -> .)
+    while           reduce using rule 11 (Atribution -> .)
+    repeat          reduce using rule 11 (Atribution -> .)
+    for             reduce using rule 11 (Atribution -> .)
+    $end            reduce using rule 11 (Atribution -> .)
+
+    Atribution                     shift and go to state 42
+
+state 25
+
+    (12) BlocoPrograma -> Programa BlocoPrograma .
+
+    $end            reduce using rule 12 (BlocoPrograma -> Programa BlocoPrograma .)
+    }               reduce using rule 12 (BlocoPrograma -> Programa BlocoPrograma .)
+
+
+state 26
+
+    (21) Ler -> read id .
+    (22) Ler -> read id . [ Exp ]
+
+    read            reduce using rule 21 (Ler -> read id .)
+    print           reduce using rule 21 (Ler -> read id .)
+    id              reduce using rule 21 (Ler -> read id .)
+    if              reduce using rule 21 (Ler -> read id .)
+    while           reduce using rule 21 (Ler -> read id .)
+    repeat          reduce using rule 21 (Ler -> read id .)
+    for             reduce using rule 21 (Ler -> read id .)
+    $end            reduce using rule 21 (Ler -> read id .)
+    }               reduce using rule 21 (Ler -> read id .)
+    [               shift and go to state 45
+
+
+state 27
+
+    (24) AtribProg -> id = . Exp
+    (48) Exp -> . Exp + Termo
+    (49) Exp -> . Exp - Termo
+    (50) Exp -> . Termo
+    (51) Termo -> . Termo * Factor
+    (52) Termo -> . Termo / Factor
+    (53) Termo -> . Termo % Factor
+    (54) Termo -> . Factor
+    (55) Factor -> . ( Exp )
+    (56) Factor -> . num
+    (57) Factor -> . id
+    (58) Factor -> . id [ Exp ]
+
+    (               shift and go to state 33
+    num             shift and go to state 34
+    id              shift and go to state 35
+
+    Exp                            shift and go to state 46
+    Termo                          shift and go to state 31
+    Factor                         shift and go to state 32
+
+state 28
+
+    (25) AtribProg -> id [ . Exp ] = Exp
+    (48) Exp -> . Exp + Termo
+    (49) Exp -> . Exp - Termo
+    (50) Exp -> . Termo
+    (51) Termo -> . Termo * Factor
+    (52) Termo -> . Termo / Factor
+    (53) Termo -> . Termo % Factor
+    (54) Termo -> . Factor
+    (55) Factor -> . ( Exp )
+    (56) Factor -> . num
+    (57) Factor -> . id
+    (58) Factor -> . id [ Exp ]
+
+    (               shift and go to state 33
+    num             shift and go to state 34
+    id              shift and go to state 35
+
+    Exp                            shift and go to state 47
+    Termo                          shift and go to state 31
+    Factor                         shift and go to state 32
+
+state 29
+
+    (23) Escrever -> print RelExp .
+
+    read            reduce using rule 23 (Escrever -> print RelExp .)
+    print           reduce using rule 23 (Escrever -> print RelExp .)
+    id              reduce using rule 23 (Escrever -> print RelExp .)
+    if              reduce using rule 23 (Escrever -> print RelExp .)
+    while           reduce using rule 23 (Escrever -> print RelExp .)
+    repeat          reduce using rule 23 (Escrever -> print RelExp .)
+    for             reduce using rule 23 (Escrever -> print RelExp .)
+    $end            reduce using rule 23 (Escrever -> print RelExp .)
+    }               reduce using rule 23 (Escrever -> print RelExp .)
+
+
+state 30
+
+    (41) RelExp -> Exp . > Exp
+    (42) RelExp -> Exp . < Exp
+    (43) RelExp -> Exp . Meq Exp
+    (44) RelExp -> Exp . meq Exp
+    (45) RelExp -> Exp . dif Exp
+    (46) RelExp -> Exp . eq Exp
+    (47) RelExp -> Exp .
+    (48) Exp -> Exp . + Termo
+    (49) Exp -> Exp . - Termo
+
+    >               shift and go to state 48
+    <               shift and go to state 49
+    Meq             shift and go to state 50
+    meq             shift and go to state 51
+    dif             shift and go to state 52
+    eq              shift and go to state 53
+    read            reduce using rule 47 (RelExp -> Exp .)
+    print           reduce using rule 47 (RelExp -> Exp .)
+    id              reduce using rule 47 (RelExp -> Exp .)
+    if              reduce using rule 47 (RelExp -> Exp .)
+    while           reduce using rule 47 (RelExp -> Exp .)
+    repeat          reduce using rule 47 (RelExp -> Exp .)
+    for             reduce using rule 47 (RelExp -> Exp .)
+    $end            reduce using rule 47 (RelExp -> Exp .)
+    }               reduce using rule 47 (RelExp -> Exp .)
+    and             reduce using rule 47 (RelExp -> Exp .)
+    )               reduce using rule 47 (RelExp -> Exp .)
+    or              reduce using rule 47 (RelExp -> Exp .)
+    ;               reduce using rule 47 (RelExp -> Exp .)
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 31
+
+    (50) Exp -> Termo .
+    (51) Termo -> Termo . * Factor
+    (52) Termo -> Termo . / Factor
+    (53) Termo -> Termo . % Factor
+
+    >               reduce using rule 50 (Exp -> Termo .)
+    <               reduce using rule 50 (Exp -> Termo .)
+    Meq             reduce using rule 50 (Exp -> Termo .)
+    meq             reduce using rule 50 (Exp -> Termo .)
+    dif             reduce using rule 50 (Exp -> Termo .)
+    eq              reduce using rule 50 (Exp -> Termo .)
+    +               reduce using rule 50 (Exp -> Termo .)
+    -               reduce using rule 50 (Exp -> Termo .)
+    read            reduce using rule 50 (Exp -> Termo .)
+    print           reduce using rule 50 (Exp -> Termo .)
+    id              reduce using rule 50 (Exp -> Termo .)
+    if              reduce using rule 50 (Exp -> Termo .)
+    while           reduce using rule 50 (Exp -> Termo .)
+    repeat          reduce using rule 50 (Exp -> Termo .)
+    for             reduce using rule 50 (Exp -> Termo .)
+    $end            reduce using rule 50 (Exp -> Termo .)
+    }               reduce using rule 50 (Exp -> Termo .)
+    ;               reduce using rule 50 (Exp -> Termo .)
+    )               reduce using rule 50 (Exp -> Termo .)
+    ]               reduce using rule 50 (Exp -> Termo .)
+    and             reduce using rule 50 (Exp -> Termo .)
+    or              reduce using rule 50 (Exp -> Termo .)
+    ,               reduce using rule 50 (Exp -> Termo .)
+    int             reduce using rule 50 (Exp -> Termo .)
+    *               shift and go to state 56
+    /               shift and go to state 57
+    %               shift and go to state 58
+
+
+state 32
+
+    (54) Termo -> Factor .
+
+    *               reduce using rule 54 (Termo -> Factor .)
+    /               reduce using rule 54 (Termo -> Factor .)
+    %               reduce using rule 54 (Termo -> Factor .)
+    >               reduce using rule 54 (Termo -> Factor .)
+    <               reduce using rule 54 (Termo -> Factor .)
+    Meq             reduce using rule 54 (Termo -> Factor .)
+    meq             reduce using rule 54 (Termo -> Factor .)
+    dif             reduce using rule 54 (Termo -> Factor .)
+    eq              reduce using rule 54 (Termo -> Factor .)
+    +               reduce using rule 54 (Termo -> Factor .)
+    -               reduce using rule 54 (Termo -> Factor .)
+    read            reduce using rule 54 (Termo -> Factor .)
+    print           reduce using rule 54 (Termo -> Factor .)
+    id              reduce using rule 54 (Termo -> Factor .)
+    if              reduce using rule 54 (Termo -> Factor .)
+    while           reduce using rule 54 (Termo -> Factor .)
+    repeat          reduce using rule 54 (Termo -> Factor .)
+    for             reduce using rule 54 (Termo -> Factor .)
+    $end            reduce using rule 54 (Termo -> Factor .)
+    }               reduce using rule 54 (Termo -> Factor .)
+    ;               reduce using rule 54 (Termo -> Factor .)
+    )               reduce using rule 54 (Termo -> Factor .)
+    ]               reduce using rule 54 (Termo -> Factor .)
+    and             reduce using rule 54 (Termo -> Factor .)
+    or              reduce using rule 54 (Termo -> Factor .)
+    ,               reduce using rule 54 (Termo -> Factor .)
+    int             reduce using rule 54 (Termo -> Factor .)
+
+
+state 33
+
+    (55) Factor -> ( . Exp )
+    (48) Exp -> . Exp + Termo
+    (49) Exp -> . Exp - Termo
+    (50) Exp -> . Termo
+    (51) Termo -> . Termo * Factor
+    (52) Termo -> . Termo / Factor
+    (53) Termo -> . Termo % Factor
+    (54) Termo -> . Factor
+    (55) Factor -> . ( Exp )
+    (56) Factor -> . num
+    (57) Factor -> . id
+    (58) Factor -> . id [ Exp ]
+
+    (               shift and go to state 33
+    num             shift and go to state 34
+    id              shift and go to state 35
+
+    Exp                            shift and go to state 59
+    Termo                          shift and go to state 31
+    Factor                         shift and go to state 32
+
+state 34
+
+    (56) Factor -> num .
+
+    *               reduce using rule 56 (Factor -> num .)
+    /               reduce using rule 56 (Factor -> num .)
+    %               reduce using rule 56 (Factor -> num .)
+    >               reduce using rule 56 (Factor -> num .)
+    <               reduce using rule 56 (Factor -> num .)
+    Meq             reduce using rule 56 (Factor -> num .)
+    meq             reduce using rule 56 (Factor -> num .)
+    dif             reduce using rule 56 (Factor -> num .)
+    eq              reduce using rule 56 (Factor -> num .)
+    +               reduce using rule 56 (Factor -> num .)
+    -               reduce using rule 56 (Factor -> num .)
+    read            reduce using rule 56 (Factor -> num .)
+    print           reduce using rule 56 (Factor -> num .)
+    id              reduce using rule 56 (Factor -> num .)
+    if              reduce using rule 56 (Factor -> num .)
+    while           reduce using rule 56 (Factor -> num .)
+    repeat          reduce using rule 56 (Factor -> num .)
+    for             reduce using rule 56 (Factor -> num .)
+    $end            reduce using rule 56 (Factor -> num .)
+    }               reduce using rule 56 (Factor -> num .)
+    ;               reduce using rule 56 (Factor -> num .)
+    )               reduce using rule 56 (Factor -> num .)
+    ]               reduce using rule 56 (Factor -> num .)
+    and             reduce using rule 56 (Factor -> num .)
+    or              reduce using rule 56 (Factor -> num .)
+    ,               reduce using rule 56 (Factor -> num .)
+    int             reduce using rule 56 (Factor -> num .)
+
+
+state 35
+
+    (57) Factor -> id .
+    (58) Factor -> id . [ Exp ]
+
+    *               reduce using rule 57 (Factor -> id .)
+    /               reduce using rule 57 (Factor -> id .)
+    %               reduce using rule 57 (Factor -> id .)
+    >               reduce using rule 57 (Factor -> id .)
+    <               reduce using rule 57 (Factor -> id .)
+    Meq             reduce using rule 57 (Factor -> id .)
+    meq             reduce using rule 57 (Factor -> id .)
+    dif             reduce using rule 57 (Factor -> id .)
+    eq              reduce using rule 57 (Factor -> id .)
+    +               reduce using rule 57 (Factor -> id .)
+    -               reduce using rule 57 (Factor -> id .)
+    read            reduce using rule 57 (Factor -> id .)
+    print           reduce using rule 57 (Factor -> id .)
+    id              reduce using rule 57 (Factor -> id .)
+    if              reduce using rule 57 (Factor -> id .)
+    while           reduce using rule 57 (Factor -> id .)
+    repeat          reduce using rule 57 (Factor -> id .)
+    for             reduce using rule 57 (Factor -> id .)
+    $end            reduce using rule 57 (Factor -> id .)
+    }               reduce using rule 57 (Factor -> id .)
+    ;               reduce using rule 57 (Factor -> id .)
+    )               reduce using rule 57 (Factor -> id .)
+    ]               reduce using rule 57 (Factor -> id .)
+    and             reduce using rule 57 (Factor -> id .)
+    or              reduce using rule 57 (Factor -> id .)
+    ,               reduce using rule 57 (Factor -> id .)
+    int             reduce using rule 57 (Factor -> id .)
+    [               shift and go to state 60
+
+
+state 36
+
+    (26) If -> if ( . Cond ) { BlocoPrograma } Else
+    (34) Cond -> . Cond or Cond2
+    (35) Cond -> . Cond2
+    (36) Cond2 -> . Cond2 and Cond3
+    (37) Cond2 -> . Cond3
+    (38) Cond3 -> . not Cond
+    (39) Cond3 -> . RelExp
+    (40) Cond3 -> . ( Cond )
+    (41) RelExp -> . Exp > Exp
+    (42) RelExp -> . Exp < Exp
+    (43) RelExp -> . Exp Meq Exp
+    (44) RelExp -> . Exp meq Exp
+    (45) RelExp -> . Exp dif Exp
+    (46) RelExp -> . Exp eq Exp
+    (47) RelExp -> . Exp
+    (48) Exp -> . Exp + Termo
+    (49) Exp -> . Exp - Termo
+    (50) Exp -> . Termo
+    (51) Termo -> . Termo * Factor
+    (52) Termo -> . Termo / Factor
+    (53) Termo -> . Termo % Factor
+    (54) Termo -> . Factor
+    (55) Factor -> . ( Exp )
+    (56) Factor -> . num
+    (57) Factor -> . id
+    (58) Factor -> . id [ Exp ]
+
+    not             shift and go to state 65
+    (               shift and go to state 61
+    num             shift and go to state 34
+    id              shift and go to state 35
+
+    Cond                           shift and go to state 62
+    Cond2                          shift and go to state 63
+    Cond3                          shift and go to state 64
+    RelExp                         shift and go to state 66
+    Exp                            shift and go to state 30
+    Termo                          shift and go to state 31
+    Factor                         shift and go to state 32
+
+state 37
+
+    (29) While -> while ( . Cond ) do { BlocoPrograma }
+    (34) Cond -> . Cond or Cond2
+    (35) Cond -> . Cond2
+    (36) Cond2 -> . Cond2 and Cond3
+    (37) Cond2 -> . Cond3
+    (38) Cond3 -> . not Cond
+    (39) Cond3 -> . RelExp
+    (40) Cond3 -> . ( Cond )
+    (41) RelExp -> . Exp > Exp
+    (42) RelExp -> . Exp < Exp
+    (43) RelExp -> . Exp Meq Exp
+    (44) RelExp -> . Exp meq Exp
+    (45) RelExp -> . Exp dif Exp
+    (46) RelExp -> . Exp eq Exp
+    (47) RelExp -> . Exp
+    (48) Exp -> . Exp + Termo
+    (49) Exp -> . Exp - Termo
+    (50) Exp -> . Termo
+    (51) Termo -> . Termo * Factor
+    (52) Termo -> . Termo / Factor
+    (53) Termo -> . Termo % Factor
+    (54) Termo -> . Factor
+    (55) Factor -> . ( Exp )
+    (56) Factor -> . num
+    (57) Factor -> . id
+    (58) Factor -> . id [ Exp ]
+
+    not             shift and go to state 65
+    (               shift and go to state 61
+    num             shift and go to state 34
+    id              shift and go to state 35
+
+    Cond                           shift and go to state 67
+    Cond2                          shift and go to state 63
+    Cond3                          shift and go to state 64
+    RelExp                         shift and go to state 66
+    Exp                            shift and go to state 30
+    Termo                          shift and go to state 31
+    Factor                         shift and go to state 32
+
+state 38
+
+    (30) Repeat -> repeat { . BlocoPrograma } until Cond
+    (12) BlocoPrograma -> . Programa BlocoPrograma
+    (13) BlocoPrograma -> .
+    (14) Programa -> . Ler
+    (15) Programa -> . Escrever
+    (16) Programa -> . AtribProg
+    (17) Programa -> . If
+    (18) Programa -> . While
+    (19) Programa -> . Repeat
+    (20) Programa -> . For
+    (21) Ler -> . read id
+    (22) Ler -> . read id [ Exp ]
+    (23) Escrever -> . print RelExp
+    (24) AtribProg -> . id = Exp
+    (25) AtribProg -> . id [ Exp ] = Exp
+    (26) If -> . if ( Cond ) { BlocoPrograma } Else
+    (29) While -> . while ( Cond ) do { BlocoPrograma }
+    (30) Repeat -> . repeat { BlocoPrograma } until Cond
+    (31) For -> . for ( AtribFor ; Cond ; AtribProg ) do { BlocoPrograma }
+
+    }               reduce using rule 13 (BlocoPrograma -> .)
+    read            shift and go to state 14
+    print           shift and go to state 16
+    id              shift and go to state 15
+    if              shift and go to state 17
+    while           shift and go to state 18
+    repeat          shift and go to state 19
+    for             shift and go to state 20
+
+    BlocoPrograma                  shift and go to state 68
+    Programa                       shift and go to state 6
+    Ler                            shift and go to state 7
+    Escrever                       shift and go to state 8
+    AtribProg                      shift and go to state 9
+    If                             shift and go to state 10
+    While                          shift and go to state 11
+    Repeat                         shift and go to state 12
+    For                            shift and go to state 13
+
+state 39
+
+    (31) For -> for ( . AtribFor ; Cond ; AtribProg ) do { BlocoPrograma }
+    (32) AtribFor -> . AtribProg
+    (33) AtribFor -> .
+    (24) AtribProg -> . id = Exp
+    (25) AtribProg -> . id [ Exp ] = Exp
+
+    ;               reduce using rule 33 (AtribFor -> .)
+    id              shift and go to state 15
+
+    AtribFor                       shift and go to state 69
+    AtribProg                      shift and go to state 70
+
+state 40
+
+    (5) AtribList -> AtribDecl ContAtrib .
+
+    int             reduce using rule 5 (AtribList -> AtribDecl ContAtrib .)
+    read            reduce using rule 5 (AtribList -> AtribDecl ContAtrib .)
+    print           reduce using rule 5 (AtribList -> AtribDecl ContAtrib .)
+    id              reduce using rule 5 (AtribList -> AtribDecl ContAtrib .)
+    if              reduce using rule 5 (AtribList -> AtribDecl ContAtrib .)
+    while           reduce using rule 5 (AtribList -> AtribDecl ContAtrib .)
+    repeat          reduce using rule 5 (AtribList -> AtribDecl ContAtrib .)
+    for             reduce using rule 5 (AtribList -> AtribDecl ContAtrib .)
+    $end            reduce using rule 5 (AtribList -> AtribDecl ContAtrib .)
+
+
+state 41
+
+    (6) ContAtrib -> , . AtribDecl ContAtrib
+    (8) AtribDecl -> . id Atribution
+    (9) AtribDecl -> . id [ num ]
+
+    id              shift and go to state 24
+
+    AtribDecl                      shift and go to state 71
+
+state 42
+
+    (8) AtribDecl -> id Atribution .
+
+    ,               reduce using rule 8 (AtribDecl -> id Atribution .)
+    int             reduce using rule 8 (AtribDecl -> id Atribution .)
+    read            reduce using rule 8 (AtribDecl -> id Atribution .)
+    print           reduce using rule 8 (AtribDecl -> id Atribution .)
+    id              reduce using rule 8 (AtribDecl -> id Atribution .)
+    if              reduce using rule 8 (AtribDecl -> id Atribution .)
+    while           reduce using rule 8 (AtribDecl -> id Atribution .)
+    repeat          reduce using rule 8 (AtribDecl -> id Atribution .)
+    for             reduce using rule 8 (AtribDecl -> id Atribution .)
+    $end            reduce using rule 8 (AtribDecl -> id Atribution .)
+
+
+state 43
+
+    (9) AtribDecl -> id [ . num ]
+
+    num             shift and go to state 72
+
+
+state 44
+
+    (10) Atribution -> = . Exp
+    (48) Exp -> . Exp + Termo
+    (49) Exp -> . Exp - Termo
+    (50) Exp -> . Termo
+    (51) Termo -> . Termo * Factor
+    (52) Termo -> . Termo / Factor
+    (53) Termo -> . Termo % Factor
+    (54) Termo -> . Factor
+    (55) Factor -> . ( Exp )
+    (56) Factor -> . num
+    (57) Factor -> . id
+    (58) Factor -> . id [ Exp ]
+
+    (               shift and go to state 33
+    num             shift and go to state 34
+    id              shift and go to state 35
+
+    Exp                            shift and go to state 73
+    Termo                          shift and go to state 31
+    Factor                         shift and go to state 32
+
+state 45
+
+    (22) Ler -> read id [ . Exp ]
+    (48) Exp -> . Exp + Termo
+    (49) Exp -> . Exp - Termo
+    (50) Exp -> . Termo
+    (51) Termo -> . Termo * Factor
+    (52) Termo -> . Termo / Factor
+    (53) Termo -> . Termo % Factor
+    (54) Termo -> . Factor
+    (55) Factor -> . ( Exp )
+    (56) Factor -> . num
+    (57) Factor -> . id
+    (58) Factor -> . id [ Exp ]
+
+    (               shift and go to state 33
+    num             shift and go to state 34
+    id              shift and go to state 35
+
+    Exp                            shift and go to state 74
+    Termo                          shift and go to state 31
+    Factor                         shift and go to state 32
+
+state 46
+
+    (24) AtribProg -> id = Exp .
+    (48) Exp -> Exp . + Termo
+    (49) Exp -> Exp . - Termo
+
+    read            reduce using rule 24 (AtribProg -> id = Exp .)
+    print           reduce using rule 24 (AtribProg -> id = Exp .)
+    id              reduce using rule 24 (AtribProg -> id = Exp .)
+    if              reduce using rule 24 (AtribProg -> id = Exp .)
+    while           reduce using rule 24 (AtribProg -> id = Exp .)
+    repeat          reduce using rule 24 (AtribProg -> id = Exp .)
+    for             reduce using rule 24 (AtribProg -> id = Exp .)
+    $end            reduce using rule 24 (AtribProg -> id = Exp .)
+    }               reduce using rule 24 (AtribProg -> id = Exp .)
+    ;               reduce using rule 24 (AtribProg -> id = Exp .)
+    )               reduce using rule 24 (AtribProg -> id = Exp .)
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 47
+
+    (25) AtribProg -> id [ Exp . ] = Exp
+    (48) Exp -> Exp . + Termo
+    (49) Exp -> Exp . - Termo
+
+    ]               shift and go to state 75
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 48
+
+    (41) RelExp -> Exp > . Exp
+    (48) Exp -> . Exp + Termo
+    (49) Exp -> . Exp - Termo
+    (50) Exp -> . Termo
+    (51) Termo -> . Termo * Factor
+    (52) Termo -> . Termo / Factor
+    (53) Termo -> . Termo % Factor
+    (54) Termo -> . Factor
+    (55) Factor -> . ( Exp )
+    (56) Factor -> . num
+    (57) Factor -> . id
+    (58) Factor -> . id [ Exp ]
+
+    (               shift and go to state 33
+    num             shift and go to state 34
+    id              shift and go to state 35
+
+    Exp                            shift and go to state 76
+    Termo                          shift and go to state 31
+    Factor                         shift and go to state 32
+
+state 49
+
+    (42) RelExp -> Exp < . Exp
+    (48) Exp -> . Exp + Termo
+    (49) Exp -> . Exp - Termo
+    (50) Exp -> . Termo
+    (51) Termo -> . Termo * Factor
+    (52) Termo -> . Termo / Factor
+    (53) Termo -> . Termo % Factor
+    (54) Termo -> . Factor
+    (55) Factor -> . ( Exp )
+    (56) Factor -> . num
+    (57) Factor -> . id
+    (58) Factor -> . id [ Exp ]
+
+    (               shift and go to state 33
+    num             shift and go to state 34
+    id              shift and go to state 35
+
+    Exp                            shift and go to state 77
+    Termo                          shift and go to state 31
+    Factor                         shift and go to state 32
+
+state 50
+
+    (43) RelExp -> Exp Meq . Exp
+    (48) Exp -> . Exp + Termo
+    (49) Exp -> . Exp - Termo
+    (50) Exp -> . Termo
+    (51) Termo -> . Termo * Factor
+    (52) Termo -> . Termo / Factor
+    (53) Termo -> . Termo % Factor
+    (54) Termo -> . Factor
+    (55) Factor -> . ( Exp )
+    (56) Factor -> . num
+    (57) Factor -> . id
+    (58) Factor -> . id [ Exp ]
+
+    (               shift and go to state 33
+    num             shift and go to state 34
+    id              shift and go to state 35
+
+    Exp                            shift and go to state 78
+    Termo                          shift and go to state 31
+    Factor                         shift and go to state 32
+
+state 51
+
+    (44) RelExp -> Exp meq . Exp
+    (48) Exp -> . Exp + Termo
+    (49) Exp -> . Exp - Termo
+    (50) Exp -> . Termo
+    (51) Termo -> . Termo * Factor
+    (52) Termo -> . Termo / Factor
+    (53) Termo -> . Termo % Factor
+    (54) Termo -> . Factor
+    (55) Factor -> . ( Exp )
+    (56) Factor -> . num
+    (57) Factor -> . id
+    (58) Factor -> . id [ Exp ]
+
+    (               shift and go to state 33
+    num             shift and go to state 34
+    id              shift and go to state 35
+
+    Exp                            shift and go to state 79
+    Termo                          shift and go to state 31
+    Factor                         shift and go to state 32
+
+state 52
+
+    (45) RelExp -> Exp dif . Exp
+    (48) Exp -> . Exp + Termo
+    (49) Exp -> . Exp - Termo
+    (50) Exp -> . Termo
+    (51) Termo -> . Termo * Factor
+    (52) Termo -> . Termo / Factor
+    (53) Termo -> . Termo % Factor
+    (54) Termo -> . Factor
+    (55) Factor -> . ( Exp )
+    (56) Factor -> . num
+    (57) Factor -> . id
+    (58) Factor -> . id [ Exp ]
+
+    (               shift and go to state 33
+    num             shift and go to state 34
+    id              shift and go to state 35
+
+    Exp                            shift and go to state 80
+    Termo                          shift and go to state 31
+    Factor                         shift and go to state 32
+
+state 53
+
+    (46) RelExp -> Exp eq . Exp
+    (48) Exp -> . Exp + Termo
+    (49) Exp -> . Exp - Termo
+    (50) Exp -> . Termo
+    (51) Termo -> . Termo * Factor
+    (52) Termo -> . Termo / Factor
+    (53) Termo -> . Termo % Factor
+    (54) Termo -> . Factor
+    (55) Factor -> . ( Exp )
+    (56) Factor -> . num
+    (57) Factor -> . id
+    (58) Factor -> . id [ Exp ]
+
+    (               shift and go to state 33
+    num             shift and go to state 34
+    id              shift and go to state 35
+
+    Exp                            shift and go to state 81
+    Termo                          shift and go to state 31
+    Factor                         shift and go to state 32
+
+state 54
+
+    (48) Exp -> Exp + . Termo
+    (51) Termo -> . Termo * Factor
+    (52) Termo -> . Termo / Factor
+    (53) Termo -> . Termo % Factor
+    (54) Termo -> . Factor
+    (55) Factor -> . ( Exp )
+    (56) Factor -> . num
+    (57) Factor -> . id
+    (58) Factor -> . id [ Exp ]
+
+    (               shift and go to state 33
+    num             shift and go to state 34
+    id              shift and go to state 35
+
+    Termo                          shift and go to state 82
+    Factor                         shift and go to state 32
+
+state 55
+
+    (49) Exp -> Exp - . Termo
+    (51) Termo -> . Termo * Factor
+    (52) Termo -> . Termo / Factor
+    (53) Termo -> . Termo % Factor
+    (54) Termo -> . Factor
+    (55) Factor -> . ( Exp )
+    (56) Factor -> . num
+    (57) Factor -> . id
+    (58) Factor -> . id [ Exp ]
+
+    (               shift and go to state 33
+    num             shift and go to state 34
+    id              shift and go to state 35
+
+    Termo                          shift and go to state 83
+    Factor                         shift and go to state 32
+
+state 56
+
+    (51) Termo -> Termo * . Factor
+    (55) Factor -> . ( Exp )
+    (56) Factor -> . num
+    (57) Factor -> . id
+    (58) Factor -> . id [ Exp ]
+
+    (               shift and go to state 33
+    num             shift and go to state 34
+    id              shift and go to state 35
+
+    Factor                         shift and go to state 84
+
+state 57
+
+    (52) Termo -> Termo / . Factor
+    (55) Factor -> . ( Exp )
+    (56) Factor -> . num
+    (57) Factor -> . id
+    (58) Factor -> . id [ Exp ]
+
+    (               shift and go to state 33
+    num             shift and go to state 34
+    id              shift and go to state 35
+
+    Factor                         shift and go to state 85
+
+state 58
+
+    (53) Termo -> Termo % . Factor
+    (55) Factor -> . ( Exp )
+    (56) Factor -> . num
+    (57) Factor -> . id
+    (58) Factor -> . id [ Exp ]
+
+    (               shift and go to state 33
+    num             shift and go to state 34
+    id              shift and go to state 35
+
+    Factor                         shift and go to state 86
+
+state 59
+
+    (55) Factor -> ( Exp . )
+    (48) Exp -> Exp . + Termo
+    (49) Exp -> Exp . - Termo
+
+    )               shift and go to state 87
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 60
+
+    (58) Factor -> id [ . Exp ]
+    (48) Exp -> . Exp + Termo
+    (49) Exp -> . Exp - Termo
+    (50) Exp -> . Termo
+    (51) Termo -> . Termo * Factor
+    (52) Termo -> . Termo / Factor
+    (53) Termo -> . Termo % Factor
+    (54) Termo -> . Factor
+    (55) Factor -> . ( Exp )
+    (56) Factor -> . num
+    (57) Factor -> . id
+    (58) Factor -> . id [ Exp ]
+
+    (               shift and go to state 33
+    num             shift and go to state 34
+    id              shift and go to state 35
+
+    Exp                            shift and go to state 88
+    Termo                          shift and go to state 31
+    Factor                         shift and go to state 32
+
+state 61
+
+    (40) Cond3 -> ( . Cond )
+    (55) Factor -> ( . Exp )
+    (34) Cond -> . Cond or Cond2
+    (35) Cond -> . Cond2
+    (48) Exp -> . Exp + Termo
+    (49) Exp -> . Exp - Termo
+    (50) Exp -> . Termo
+    (36) Cond2 -> . Cond2 and Cond3
+    (37) Cond2 -> . Cond3
+    (51) Termo -> . Termo * Factor
+    (52) Termo -> . Termo / Factor
+    (53) Termo -> . Termo % Factor
+    (54) Termo -> . Factor
+    (38) Cond3 -> . not Cond
+    (39) Cond3 -> . RelExp
+    (40) Cond3 -> . ( Cond )
+    (55) Factor -> . ( Exp )
+    (56) Factor -> . num
+    (57) Factor -> . id
+    (58) Factor -> . id [ Exp ]
+    (41) RelExp -> . Exp > Exp
+    (42) RelExp -> . Exp < Exp
+    (43) RelExp -> . Exp Meq Exp
+    (44) RelExp -> . Exp meq Exp
+    (45) RelExp -> . Exp dif Exp
+    (46) RelExp -> . Exp eq Exp
+    (47) RelExp -> . Exp
+
+    not             shift and go to state 65
+    (               shift and go to state 61
+    num             shift and go to state 34
+    id              shift and go to state 35
+
+    Cond                           shift and go to state 89
+    Exp                            shift and go to state 90
+    Cond2                          shift and go to state 63
+    Termo                          shift and go to state 31
+    Cond3                          shift and go to state 64
+    Factor                         shift and go to state 32
+    RelExp                         shift and go to state 66
+
+state 62
+
+    (26) If -> if ( Cond . ) { BlocoPrograma } Else
+    (34) Cond -> Cond . or Cond2
+
+    )               shift and go to state 91
+    or              shift and go to state 92
+
+
+state 63
+
+    (35) Cond -> Cond2 .
+    (36) Cond2 -> Cond2 . and Cond3
+
+  ! shift/reduce conflict for and resolved as shift
+    )               reduce using rule 35 (Cond -> Cond2 .)
+    or              reduce using rule 35 (Cond -> Cond2 .)
+    ;               reduce using rule 35 (Cond -> Cond2 .)
+    read            reduce using rule 35 (Cond -> Cond2 .)
+    print           reduce using rule 35 (Cond -> Cond2 .)
+    id              reduce using rule 35 (Cond -> Cond2 .)
+    if              reduce using rule 35 (Cond -> Cond2 .)
+    while           reduce using rule 35 (Cond -> Cond2 .)
+    repeat          reduce using rule 35 (Cond -> Cond2 .)
+    for             reduce using rule 35 (Cond -> Cond2 .)
+    $end            reduce using rule 35 (Cond -> Cond2 .)
+    }               reduce using rule 35 (Cond -> Cond2 .)
+    and             shift and go to state 93
+
+  ! and             [ reduce using rule 35 (Cond -> Cond2 .) ]
+
+
+state 64
+
+    (37) Cond2 -> Cond3 .
+
+    and             reduce using rule 37 (Cond2 -> Cond3 .)
+    )               reduce using rule 37 (Cond2 -> Cond3 .)
+    or              reduce using rule 37 (Cond2 -> Cond3 .)
+    ;               reduce using rule 37 (Cond2 -> Cond3 .)
+    read            reduce using rule 37 (Cond2 -> Cond3 .)
+    print           reduce using rule 37 (Cond2 -> Cond3 .)
+    id              reduce using rule 37 (Cond2 -> Cond3 .)
+    if              reduce using rule 37 (Cond2 -> Cond3 .)
+    while           reduce using rule 37 (Cond2 -> Cond3 .)
+    repeat          reduce using rule 37 (Cond2 -> Cond3 .)
+    for             reduce using rule 37 (Cond2 -> Cond3 .)
+    $end            reduce using rule 37 (Cond2 -> Cond3 .)
+    }               reduce using rule 37 (Cond2 -> Cond3 .)
+
+
+state 65
+
+    (38) Cond3 -> not . Cond
+    (34) Cond -> . Cond or Cond2
+    (35) Cond -> . Cond2
+    (36) Cond2 -> . Cond2 and Cond3
+    (37) Cond2 -> . Cond3
+    (38) Cond3 -> . not Cond
+    (39) Cond3 -> . RelExp
+    (40) Cond3 -> . ( Cond )
+    (41) RelExp -> . Exp > Exp
+    (42) RelExp -> . Exp < Exp
+    (43) RelExp -> . Exp Meq Exp
+    (44) RelExp -> . Exp meq Exp
+    (45) RelExp -> . Exp dif Exp
+    (46) RelExp -> . Exp eq Exp
+    (47) RelExp -> . Exp
+    (48) Exp -> . Exp + Termo
+    (49) Exp -> . Exp - Termo
+    (50) Exp -> . Termo
+    (51) Termo -> . Termo * Factor
+    (52) Termo -> . Termo / Factor
+    (53) Termo -> . Termo % Factor
+    (54) Termo -> . Factor
+    (55) Factor -> . ( Exp )
+    (56) Factor -> . num
+    (57) Factor -> . id
+    (58) Factor -> . id [ Exp ]
+
+    not             shift and go to state 65
+    (               shift and go to state 61
+    num             shift and go to state 34
+    id              shift and go to state 35
+
+    Cond                           shift and go to state 94
+    Cond2                          shift and go to state 63
+    Cond3                          shift and go to state 64
+    RelExp                         shift and go to state 66
+    Exp                            shift and go to state 30
+    Termo                          shift and go to state 31
+    Factor                         shift and go to state 32
+
+state 66
+
+    (39) Cond3 -> RelExp .
+
+    and             reduce using rule 39 (Cond3 -> RelExp .)
+    )               reduce using rule 39 (Cond3 -> RelExp .)
+    or              reduce using rule 39 (Cond3 -> RelExp .)
+    ;               reduce using rule 39 (Cond3 -> RelExp .)
+    read            reduce using rule 39 (Cond3 -> RelExp .)
+    print           reduce using rule 39 (Cond3 -> RelExp .)
+    id              reduce using rule 39 (Cond3 -> RelExp .)
+    if              reduce using rule 39 (Cond3 -> RelExp .)
+    while           reduce using rule 39 (Cond3 -> RelExp .)
+    repeat          reduce using rule 39 (Cond3 -> RelExp .)
+    for             reduce using rule 39 (Cond3 -> RelExp .)
+    $end            reduce using rule 39 (Cond3 -> RelExp .)
+    }               reduce using rule 39 (Cond3 -> RelExp .)
+
+
+state 67
+
+    (29) While -> while ( Cond . ) do { BlocoPrograma }
+    (34) Cond -> Cond . or Cond2
+
+    )               shift and go to state 95
+    or              shift and go to state 92
+
+
+state 68
+
+    (30) Repeat -> repeat { BlocoPrograma . } until Cond
+
+    }               shift and go to state 96
+
+
+state 69
+
+    (31) For -> for ( AtribFor . ; Cond ; AtribProg ) do { BlocoPrograma }
+
+    ;               shift and go to state 97
+
+
+state 70
+
+    (32) AtribFor -> AtribProg .
+
+    ;               reduce using rule 32 (AtribFor -> AtribProg .)
+
+
+state 71
+
+    (6) ContAtrib -> , AtribDecl . ContAtrib
+    (6) ContAtrib -> . , AtribDecl ContAtrib
+    (7) ContAtrib -> .
+
+    ,               shift and go to state 41
+    int             reduce using rule 7 (ContAtrib -> .)
+    read            reduce using rule 7 (ContAtrib -> .)
+    print           reduce using rule 7 (ContAtrib -> .)
+    id              reduce using rule 7 (ContAtrib -> .)
+    if              reduce using rule 7 (ContAtrib -> .)
+    while           reduce using rule 7 (ContAtrib -> .)
+    repeat          reduce using rule 7 (ContAtrib -> .)
+    for             reduce using rule 7 (ContAtrib -> .)
+    $end            reduce using rule 7 (ContAtrib -> .)
+
+    ContAtrib                      shift and go to state 98
+
+state 72
+
+    (9) AtribDecl -> id [ num . ]
+
+    ]               shift and go to state 99
+
+
+state 73
+
+    (10) Atribution -> = Exp .
+    (48) Exp -> Exp . + Termo
+    (49) Exp -> Exp . - Termo
+
+    ,               reduce using rule 10 (Atribution -> = Exp .)
+    int             reduce using rule 10 (Atribution -> = Exp .)
+    read            reduce using rule 10 (Atribution -> = Exp .)
+    print           reduce using rule 10 (Atribution -> = Exp .)
+    id              reduce using rule 10 (Atribution -> = Exp .)
+    if              reduce using rule 10 (Atribution -> = Exp .)
+    while           reduce using rule 10 (Atribution -> = Exp .)
+    repeat          reduce using rule 10 (Atribution -> = Exp .)
+    for             reduce using rule 10 (Atribution -> = Exp .)
+    $end            reduce using rule 10 (Atribution -> = Exp .)
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 74
+
+    (22) Ler -> read id [ Exp . ]
+    (48) Exp -> Exp . + Termo
+    (49) Exp -> Exp . - Termo
+
+    ]               shift and go to state 100
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 75
+
+    (25) AtribProg -> id [ Exp ] . = Exp
+
+    =               shift and go to state 101
+
+
+state 76
+
+    (41) RelExp -> Exp > Exp .
+    (48) Exp -> Exp . + Termo
+    (49) Exp -> Exp . - Termo
+
+    read            reduce using rule 41 (RelExp -> Exp > Exp .)
+    print           reduce using rule 41 (RelExp -> Exp > Exp .)
+    id              reduce using rule 41 (RelExp -> Exp > Exp .)
+    if              reduce using rule 41 (RelExp -> Exp > Exp .)
+    while           reduce using rule 41 (RelExp -> Exp > Exp .)
+    repeat          reduce using rule 41 (RelExp -> Exp > Exp .)
+    for             reduce using rule 41 (RelExp -> Exp > Exp .)
+    $end            reduce using rule 41 (RelExp -> Exp > Exp .)
+    }               reduce using rule 41 (RelExp -> Exp > Exp .)
+    and             reduce using rule 41 (RelExp -> Exp > Exp .)
+    )               reduce using rule 41 (RelExp -> Exp > Exp .)
+    or              reduce using rule 41 (RelExp -> Exp > Exp .)
+    ;               reduce using rule 41 (RelExp -> Exp > Exp .)
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 77
+
+    (42) RelExp -> Exp < Exp .
+    (48) Exp -> Exp . + Termo
+    (49) Exp -> Exp . - Termo
+
+    read            reduce using rule 42 (RelExp -> Exp < Exp .)
+    print           reduce using rule 42 (RelExp -> Exp < Exp .)
+    id              reduce using rule 42 (RelExp -> Exp < Exp .)
+    if              reduce using rule 42 (RelExp -> Exp < Exp .)
+    while           reduce using rule 42 (RelExp -> Exp < Exp .)
+    repeat          reduce using rule 42 (RelExp -> Exp < Exp .)
+    for             reduce using rule 42 (RelExp -> Exp < Exp .)
+    $end            reduce using rule 42 (RelExp -> Exp < Exp .)
+    }               reduce using rule 42 (RelExp -> Exp < Exp .)
+    and             reduce using rule 42 (RelExp -> Exp < Exp .)
+    )               reduce using rule 42 (RelExp -> Exp < Exp .)
+    or              reduce using rule 42 (RelExp -> Exp < Exp .)
+    ;               reduce using rule 42 (RelExp -> Exp < Exp .)
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 78
+
+    (43) RelExp -> Exp Meq Exp .
+    (48) Exp -> Exp . + Termo
+    (49) Exp -> Exp . - Termo
+
+    read            reduce using rule 43 (RelExp -> Exp Meq Exp .)
+    print           reduce using rule 43 (RelExp -> Exp Meq Exp .)
+    id              reduce using rule 43 (RelExp -> Exp Meq Exp .)
+    if              reduce using rule 43 (RelExp -> Exp Meq Exp .)
+    while           reduce using rule 43 (RelExp -> Exp Meq Exp .)
+    repeat          reduce using rule 43 (RelExp -> Exp Meq Exp .)
+    for             reduce using rule 43 (RelExp -> Exp Meq Exp .)
+    $end            reduce using rule 43 (RelExp -> Exp Meq Exp .)
+    }               reduce using rule 43 (RelExp -> Exp Meq Exp .)
+    and             reduce using rule 43 (RelExp -> Exp Meq Exp .)
+    )               reduce using rule 43 (RelExp -> Exp Meq Exp .)
+    or              reduce using rule 43 (RelExp -> Exp Meq Exp .)
+    ;               reduce using rule 43 (RelExp -> Exp Meq Exp .)
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 79
+
+    (44) RelExp -> Exp meq Exp .
+    (48) Exp -> Exp . + Termo
+    (49) Exp -> Exp . - Termo
+
+    read            reduce using rule 44 (RelExp -> Exp meq Exp .)
+    print           reduce using rule 44 (RelExp -> Exp meq Exp .)
+    id              reduce using rule 44 (RelExp -> Exp meq Exp .)
+    if              reduce using rule 44 (RelExp -> Exp meq Exp .)
+    while           reduce using rule 44 (RelExp -> Exp meq Exp .)
+    repeat          reduce using rule 44 (RelExp -> Exp meq Exp .)
+    for             reduce using rule 44 (RelExp -> Exp meq Exp .)
+    $end            reduce using rule 44 (RelExp -> Exp meq Exp .)
+    }               reduce using rule 44 (RelExp -> Exp meq Exp .)
+    and             reduce using rule 44 (RelExp -> Exp meq Exp .)
+    )               reduce using rule 44 (RelExp -> Exp meq Exp .)
+    or              reduce using rule 44 (RelExp -> Exp meq Exp .)
+    ;               reduce using rule 44 (RelExp -> Exp meq Exp .)
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 80
+
+    (45) RelExp -> Exp dif Exp .
+    (48) Exp -> Exp . + Termo
+    (49) Exp -> Exp . - Termo
+
+    read            reduce using rule 45 (RelExp -> Exp dif Exp .)
+    print           reduce using rule 45 (RelExp -> Exp dif Exp .)
+    id              reduce using rule 45 (RelExp -> Exp dif Exp .)
+    if              reduce using rule 45 (RelExp -> Exp dif Exp .)
+    while           reduce using rule 45 (RelExp -> Exp dif Exp .)
+    repeat          reduce using rule 45 (RelExp -> Exp dif Exp .)
+    for             reduce using rule 45 (RelExp -> Exp dif Exp .)
+    $end            reduce using rule 45 (RelExp -> Exp dif Exp .)
+    }               reduce using rule 45 (RelExp -> Exp dif Exp .)
+    and             reduce using rule 45 (RelExp -> Exp dif Exp .)
+    )               reduce using rule 45 (RelExp -> Exp dif Exp .)
+    or              reduce using rule 45 (RelExp -> Exp dif Exp .)
+    ;               reduce using rule 45 (RelExp -> Exp dif Exp .)
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 81
+
+    (46) RelExp -> Exp eq Exp .
+    (48) Exp -> Exp . + Termo
+    (49) Exp -> Exp . - Termo
+
+    read            reduce using rule 46 (RelExp -> Exp eq Exp .)
+    print           reduce using rule 46 (RelExp -> Exp eq Exp .)
+    id              reduce using rule 46 (RelExp -> Exp eq Exp .)
+    if              reduce using rule 46 (RelExp -> Exp eq Exp .)
+    while           reduce using rule 46 (RelExp -> Exp eq Exp .)
+    repeat          reduce using rule 46 (RelExp -> Exp eq Exp .)
+    for             reduce using rule 46 (RelExp -> Exp eq Exp .)
+    $end            reduce using rule 46 (RelExp -> Exp eq Exp .)
+    }               reduce using rule 46 (RelExp -> Exp eq Exp .)
+    and             reduce using rule 46 (RelExp -> Exp eq Exp .)
+    )               reduce using rule 46 (RelExp -> Exp eq Exp .)
+    or              reduce using rule 46 (RelExp -> Exp eq Exp .)
+    ;               reduce using rule 46 (RelExp -> Exp eq Exp .)
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 82
+
+    (48) Exp -> Exp + Termo .
+    (51) Termo -> Termo . * Factor
+    (52) Termo -> Termo . / Factor
+    (53) Termo -> Termo . % Factor
+
+    >               reduce using rule 48 (Exp -> Exp + Termo .)
+    <               reduce using rule 48 (Exp -> Exp + Termo .)
+    Meq             reduce using rule 48 (Exp -> Exp + Termo .)
+    meq             reduce using rule 48 (Exp -> Exp + Termo .)
+    dif             reduce using rule 48 (Exp -> Exp + Termo .)
+    eq              reduce using rule 48 (Exp -> Exp + Termo .)
+    +               reduce using rule 48 (Exp -> Exp + Termo .)
+    -               reduce using rule 48 (Exp -> Exp + Termo .)
+    read            reduce using rule 48 (Exp -> Exp + Termo .)
+    print           reduce using rule 48 (Exp -> Exp + Termo .)
+    id              reduce using rule 48 (Exp -> Exp + Termo .)
+    if              reduce using rule 48 (Exp -> Exp + Termo .)
+    while           reduce using rule 48 (Exp -> Exp + Termo .)
+    repeat          reduce using rule 48 (Exp -> Exp + Termo .)
+    for             reduce using rule 48 (Exp -> Exp + Termo .)
+    $end            reduce using rule 48 (Exp -> Exp + Termo .)
+    }               reduce using rule 48 (Exp -> Exp + Termo .)
+    ;               reduce using rule 48 (Exp -> Exp + Termo .)
+    )               reduce using rule 48 (Exp -> Exp + Termo .)
+    ]               reduce using rule 48 (Exp -> Exp + Termo .)
+    and             reduce using rule 48 (Exp -> Exp + Termo .)
+    or              reduce using rule 48 (Exp -> Exp + Termo .)
+    ,               reduce using rule 48 (Exp -> Exp + Termo .)
+    int             reduce using rule 48 (Exp -> Exp + Termo .)
+    *               shift and go to state 56
+    /               shift and go to state 57
+    %               shift and go to state 58
+
+
+state 83
+
+    (49) Exp -> Exp - Termo .
+    (51) Termo -> Termo . * Factor
+    (52) Termo -> Termo . / Factor
+    (53) Termo -> Termo . % Factor
+
+    >               reduce using rule 49 (Exp -> Exp - Termo .)
+    <               reduce using rule 49 (Exp -> Exp - Termo .)
+    Meq             reduce using rule 49 (Exp -> Exp - Termo .)
+    meq             reduce using rule 49 (Exp -> Exp - Termo .)
+    dif             reduce using rule 49 (Exp -> Exp - Termo .)
+    eq              reduce using rule 49 (Exp -> Exp - Termo .)
+    +               reduce using rule 49 (Exp -> Exp - Termo .)
+    -               reduce using rule 49 (Exp -> Exp - Termo .)
+    read            reduce using rule 49 (Exp -> Exp - Termo .)
+    print           reduce using rule 49 (Exp -> Exp - Termo .)
+    id              reduce using rule 49 (Exp -> Exp - Termo .)
+    if              reduce using rule 49 (Exp -> Exp - Termo .)
+    while           reduce using rule 49 (Exp -> Exp - Termo .)
+    repeat          reduce using rule 49 (Exp -> Exp - Termo .)
+    for             reduce using rule 49 (Exp -> Exp - Termo .)
+    $end            reduce using rule 49 (Exp -> Exp - Termo .)
+    }               reduce using rule 49 (Exp -> Exp - Termo .)
+    ;               reduce using rule 49 (Exp -> Exp - Termo .)
+    )               reduce using rule 49 (Exp -> Exp - Termo .)
+    ]               reduce using rule 49 (Exp -> Exp - Termo .)
+    and             reduce using rule 49 (Exp -> Exp - Termo .)
+    or              reduce using rule 49 (Exp -> Exp - Termo .)
+    ,               reduce using rule 49 (Exp -> Exp - Termo .)
+    int             reduce using rule 49 (Exp -> Exp - Termo .)
+    *               shift and go to state 56
+    /               shift and go to state 57
+    %               shift and go to state 58
+
+
+state 84
+
+    (51) Termo -> Termo * Factor .
+
+    *               reduce using rule 51 (Termo -> Termo * Factor .)
+    /               reduce using rule 51 (Termo -> Termo * Factor .)
+    %               reduce using rule 51 (Termo -> Termo * Factor .)
+    >               reduce using rule 51 (Termo -> Termo * Factor .)
+    <               reduce using rule 51 (Termo -> Termo * Factor .)
+    Meq             reduce using rule 51 (Termo -> Termo * Factor .)
+    meq             reduce using rule 51 (Termo -> Termo * Factor .)
+    dif             reduce using rule 51 (Termo -> Termo * Factor .)
+    eq              reduce using rule 51 (Termo -> Termo * Factor .)
+    +               reduce using rule 51 (Termo -> Termo * Factor .)
+    -               reduce using rule 51 (Termo -> Termo * Factor .)
+    read            reduce using rule 51 (Termo -> Termo * Factor .)
+    print           reduce using rule 51 (Termo -> Termo * Factor .)
+    id              reduce using rule 51 (Termo -> Termo * Factor .)
+    if              reduce using rule 51 (Termo -> Termo * Factor .)
+    while           reduce using rule 51 (Termo -> Termo * Factor .)
+    repeat          reduce using rule 51 (Termo -> Termo * Factor .)
+    for             reduce using rule 51 (Termo -> Termo * Factor .)
+    $end            reduce using rule 51 (Termo -> Termo * Factor .)
+    }               reduce using rule 51 (Termo -> Termo * Factor .)
+    ;               reduce using rule 51 (Termo -> Termo * Factor .)
+    )               reduce using rule 51 (Termo -> Termo * Factor .)
+    ]               reduce using rule 51 (Termo -> Termo * Factor .)
+    and             reduce using rule 51 (Termo -> Termo * Factor .)
+    or              reduce using rule 51 (Termo -> Termo * Factor .)
+    ,               reduce using rule 51 (Termo -> Termo * Factor .)
+    int             reduce using rule 51 (Termo -> Termo * Factor .)
+
+
+state 85
+
+    (52) Termo -> Termo / Factor .
+
+    *               reduce using rule 52 (Termo -> Termo / Factor .)
+    /               reduce using rule 52 (Termo -> Termo / Factor .)
+    %               reduce using rule 52 (Termo -> Termo / Factor .)
+    >               reduce using rule 52 (Termo -> Termo / Factor .)
+    <               reduce using rule 52 (Termo -> Termo / Factor .)
+    Meq             reduce using rule 52 (Termo -> Termo / Factor .)
+    meq             reduce using rule 52 (Termo -> Termo / Factor .)
+    dif             reduce using rule 52 (Termo -> Termo / Factor .)
+    eq              reduce using rule 52 (Termo -> Termo / Factor .)
+    +               reduce using rule 52 (Termo -> Termo / Factor .)
+    -               reduce using rule 52 (Termo -> Termo / Factor .)
+    read            reduce using rule 52 (Termo -> Termo / Factor .)
+    print           reduce using rule 52 (Termo -> Termo / Factor .)
+    id              reduce using rule 52 (Termo -> Termo / Factor .)
+    if              reduce using rule 52 (Termo -> Termo / Factor .)
+    while           reduce using rule 52 (Termo -> Termo / Factor .)
+    repeat          reduce using rule 52 (Termo -> Termo / Factor .)
+    for             reduce using rule 52 (Termo -> Termo / Factor .)
+    $end            reduce using rule 52 (Termo -> Termo / Factor .)
+    }               reduce using rule 52 (Termo -> Termo / Factor .)
+    ;               reduce using rule 52 (Termo -> Termo / Factor .)
+    )               reduce using rule 52 (Termo -> Termo / Factor .)
+    ]               reduce using rule 52 (Termo -> Termo / Factor .)
+    and             reduce using rule 52 (Termo -> Termo / Factor .)
+    or              reduce using rule 52 (Termo -> Termo / Factor .)
+    ,               reduce using rule 52 (Termo -> Termo / Factor .)
+    int             reduce using rule 52 (Termo -> Termo / Factor .)
+
+
+state 86
+
+    (53) Termo -> Termo % Factor .
+
+    *               reduce using rule 53 (Termo -> Termo % Factor .)
+    /               reduce using rule 53 (Termo -> Termo % Factor .)
+    %               reduce using rule 53 (Termo -> Termo % Factor .)
+    >               reduce using rule 53 (Termo -> Termo % Factor .)
+    <               reduce using rule 53 (Termo -> Termo % Factor .)
+    Meq             reduce using rule 53 (Termo -> Termo % Factor .)
+    meq             reduce using rule 53 (Termo -> Termo % Factor .)
+    dif             reduce using rule 53 (Termo -> Termo % Factor .)
+    eq              reduce using rule 53 (Termo -> Termo % Factor .)
+    +               reduce using rule 53 (Termo -> Termo % Factor .)
+    -               reduce using rule 53 (Termo -> Termo % Factor .)
+    read            reduce using rule 53 (Termo -> Termo % Factor .)
+    print           reduce using rule 53 (Termo -> Termo % Factor .)
+    id              reduce using rule 53 (Termo -> Termo % Factor .)
+    if              reduce using rule 53 (Termo -> Termo % Factor .)
+    while           reduce using rule 53 (Termo -> Termo % Factor .)
+    repeat          reduce using rule 53 (Termo -> Termo % Factor .)
+    for             reduce using rule 53 (Termo -> Termo % Factor .)
+    $end            reduce using rule 53 (Termo -> Termo % Factor .)
+    }               reduce using rule 53 (Termo -> Termo % Factor .)
+    ;               reduce using rule 53 (Termo -> Termo % Factor .)
+    )               reduce using rule 53 (Termo -> Termo % Factor .)
+    ]               reduce using rule 53 (Termo -> Termo % Factor .)
+    and             reduce using rule 53 (Termo -> Termo % Factor .)
+    or              reduce using rule 53 (Termo -> Termo % Factor .)
+    ,               reduce using rule 53 (Termo -> Termo % Factor .)
+    int             reduce using rule 53 (Termo -> Termo % Factor .)
+
+
+state 87
+
+    (55) Factor -> ( Exp ) .
+
+    *               reduce using rule 55 (Factor -> ( Exp ) .)
+    /               reduce using rule 55 (Factor -> ( Exp ) .)
+    %               reduce using rule 55 (Factor -> ( Exp ) .)
+    >               reduce using rule 55 (Factor -> ( Exp ) .)
+    <               reduce using rule 55 (Factor -> ( Exp ) .)
+    Meq             reduce using rule 55 (Factor -> ( Exp ) .)
+    meq             reduce using rule 55 (Factor -> ( Exp ) .)
+    dif             reduce using rule 55 (Factor -> ( Exp ) .)
+    eq              reduce using rule 55 (Factor -> ( Exp ) .)
+    +               reduce using rule 55 (Factor -> ( Exp ) .)
+    -               reduce using rule 55 (Factor -> ( Exp ) .)
+    read            reduce using rule 55 (Factor -> ( Exp ) .)
+    print           reduce using rule 55 (Factor -> ( Exp ) .)
+    id              reduce using rule 55 (Factor -> ( Exp ) .)
+    if              reduce using rule 55 (Factor -> ( Exp ) .)
+    while           reduce using rule 55 (Factor -> ( Exp ) .)
+    repeat          reduce using rule 55 (Factor -> ( Exp ) .)
+    for             reduce using rule 55 (Factor -> ( Exp ) .)
+    $end            reduce using rule 55 (Factor -> ( Exp ) .)
+    }               reduce using rule 55 (Factor -> ( Exp ) .)
+    ;               reduce using rule 55 (Factor -> ( Exp ) .)
+    )               reduce using rule 55 (Factor -> ( Exp ) .)
+    ]               reduce using rule 55 (Factor -> ( Exp ) .)
+    and             reduce using rule 55 (Factor -> ( Exp ) .)
+    or              reduce using rule 55 (Factor -> ( Exp ) .)
+    ,               reduce using rule 55 (Factor -> ( Exp ) .)
+    int             reduce using rule 55 (Factor -> ( Exp ) .)
+
+
+state 88
+
+    (58) Factor -> id [ Exp . ]
+    (48) Exp -> Exp . + Termo
+    (49) Exp -> Exp . - Termo
+
+    ]               shift and go to state 102
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 89
+
+    (40) Cond3 -> ( Cond . )
+    (34) Cond -> Cond . or Cond2
+
+    )               shift and go to state 103
+    or              shift and go to state 92
+
+
+state 90
+
+    (55) Factor -> ( Exp . )
+    (48) Exp -> Exp . + Termo
+    (49) Exp -> Exp . - Termo
+    (41) RelExp -> Exp . > Exp
+    (42) RelExp -> Exp . < Exp
+    (43) RelExp -> Exp . Meq Exp
+    (44) RelExp -> Exp . meq Exp
+    (45) RelExp -> Exp . dif Exp
+    (46) RelExp -> Exp . eq Exp
+    (47) RelExp -> Exp .
+
+  ! shift/reduce conflict for ) resolved as shift
+    )               shift and go to state 87
+    +               shift and go to state 54
+    -               shift and go to state 55
+    >               shift and go to state 48
+    <               shift and go to state 49
+    Meq             shift and go to state 50
+    meq             shift and go to state 51
+    dif             shift and go to state 52
+    eq              shift and go to state 53
+    and             reduce using rule 47 (RelExp -> Exp .)
+    or              reduce using rule 47 (RelExp -> Exp .)
+
+  ! )               [ reduce using rule 47 (RelExp -> Exp .) ]
+
+
+state 91
+
+    (26) If -> if ( Cond ) . { BlocoPrograma } Else
+
+    {               shift and go to state 104
+
+
+state 92
+
+    (34) Cond -> Cond or . Cond2
+    (36) Cond2 -> . Cond2 and Cond3
+    (37) Cond2 -> . Cond3
+    (38) Cond3 -> . not Cond
+    (39) Cond3 -> . RelExp
+    (40) Cond3 -> . ( Cond )
+    (41) RelExp -> . Exp > Exp
+    (42) RelExp -> . Exp < Exp
+    (43) RelExp -> . Exp Meq Exp
+    (44) RelExp -> . Exp meq Exp
+    (45) RelExp -> . Exp dif Exp
+    (46) RelExp -> . Exp eq Exp
+    (47) RelExp -> . Exp
+    (48) Exp -> . Exp + Termo
+    (49) Exp -> . Exp - Termo
+    (50) Exp -> . Termo
+    (51) Termo -> . Termo * Factor
+    (52) Termo -> . Termo / Factor
+    (53) Termo -> . Termo % Factor
+    (54) Termo -> . Factor
+    (55) Factor -> . ( Exp )
+    (56) Factor -> . num
+    (57) Factor -> . id
+    (58) Factor -> . id [ Exp ]
+
+    not             shift and go to state 65
+    (               shift and go to state 61
+    num             shift and go to state 34
+    id              shift and go to state 35
+
+    Cond2                          shift and go to state 105
+    Cond3                          shift and go to state 64
+    RelExp                         shift and go to state 66
+    Exp                            shift and go to state 30
+    Termo                          shift and go to state 31
+    Factor                         shift and go to state 32
+
+state 93
+
+    (36) Cond2 -> Cond2 and . Cond3
+    (38) Cond3 -> . not Cond
+    (39) Cond3 -> . RelExp
+    (40) Cond3 -> . ( Cond )
+    (41) RelExp -> . Exp > Exp
+    (42) RelExp -> . Exp < Exp
+    (43) RelExp -> . Exp Meq Exp
+    (44) RelExp -> . Exp meq Exp
+    (45) RelExp -> . Exp dif Exp
+    (46) RelExp -> . Exp eq Exp
+    (47) RelExp -> . Exp
+    (48) Exp -> . Exp + Termo
+    (49) Exp -> . Exp - Termo
+    (50) Exp -> . Termo
+    (51) Termo -> . Termo * Factor
+    (52) Termo -> . Termo / Factor
+    (53) Termo -> . Termo % Factor
+    (54) Termo -> . Factor
+    (55) Factor -> . ( Exp )
+    (56) Factor -> . num
+    (57) Factor -> . id
+    (58) Factor -> . id [ Exp ]
+
+    not             shift and go to state 65
+    (               shift and go to state 61
+    num             shift and go to state 34
+    id              shift and go to state 35
+
+    Cond3                          shift and go to state 106
+    RelExp                         shift and go to state 66
+    Exp                            shift and go to state 30
+    Termo                          shift and go to state 31
+    Factor                         shift and go to state 32
+
+state 94
+
+    (38) Cond3 -> not Cond .
+    (34) Cond -> Cond . or Cond2
+
+  ! shift/reduce conflict for or resolved as shift
+    and             reduce using rule 38 (Cond3 -> not Cond .)
+    )               reduce using rule 38 (Cond3 -> not Cond .)
+    ;               reduce using rule 38 (Cond3 -> not Cond .)
+    read            reduce using rule 38 (Cond3 -> not Cond .)
+    print           reduce using rule 38 (Cond3 -> not Cond .)
+    id              reduce using rule 38 (Cond3 -> not Cond .)
+    if              reduce using rule 38 (Cond3 -> not Cond .)
+    while           reduce using rule 38 (Cond3 -> not Cond .)
+    repeat          reduce using rule 38 (Cond3 -> not Cond .)
+    for             reduce using rule 38 (Cond3 -> not Cond .)
+    $end            reduce using rule 38 (Cond3 -> not Cond .)
+    }               reduce using rule 38 (Cond3 -> not Cond .)
+    or              shift and go to state 92
+
+  ! or              [ reduce using rule 38 (Cond3 -> not Cond .) ]
+
+
+state 95
+
+    (29) While -> while ( Cond ) . do { BlocoPrograma }
+
+    do              shift and go to state 107
+
+
+state 96
+
+    (30) Repeat -> repeat { BlocoPrograma } . until Cond
+
+    until           shift and go to state 108
+
+
+state 97
+
+    (31) For -> for ( AtribFor ; . Cond ; AtribProg ) do { BlocoPrograma }
+    (34) Cond -> . Cond or Cond2
+    (35) Cond -> . Cond2
+    (36) Cond2 -> . Cond2 and Cond3
+    (37) Cond2 -> . Cond3
+    (38) Cond3 -> . not Cond
+    (39) Cond3 -> . RelExp
+    (40) Cond3 -> . ( Cond )
+    (41) RelExp -> . Exp > Exp
+    (42) RelExp -> . Exp < Exp
+    (43) RelExp -> . Exp Meq Exp
+    (44) RelExp -> . Exp meq Exp
+    (45) RelExp -> . Exp dif Exp
+    (46) RelExp -> . Exp eq Exp
+    (47) RelExp -> . Exp
+    (48) Exp -> . Exp + Termo
+    (49) Exp -> . Exp - Termo
+    (50) Exp -> . Termo
+    (51) Termo -> . Termo * Factor
+    (52) Termo -> . Termo / Factor
+    (53) Termo -> . Termo % Factor
+    (54) Termo -> . Factor
+    (55) Factor -> . ( Exp )
+    (56) Factor -> . num
+    (57) Factor -> . id
+    (58) Factor -> . id [ Exp ]
+
+    not             shift and go to state 65
+    (               shift and go to state 61
+    num             shift and go to state 34
+    id              shift and go to state 35
+
+    Cond                           shift and go to state 109
+    Cond2                          shift and go to state 63
+    Cond3                          shift and go to state 64
+    RelExp                         shift and go to state 66
+    Exp                            shift and go to state 30
+    Termo                          shift and go to state 31
+    Factor                         shift and go to state 32
+
+state 98
+
+    (6) ContAtrib -> , AtribDecl ContAtrib .
+
+    int             reduce using rule 6 (ContAtrib -> , AtribDecl ContAtrib .)
+    read            reduce using rule 6 (ContAtrib -> , AtribDecl ContAtrib .)
+    print           reduce using rule 6 (ContAtrib -> , AtribDecl ContAtrib .)
+    id              reduce using rule 6 (ContAtrib -> , AtribDecl ContAtrib .)
+    if              reduce using rule 6 (ContAtrib -> , AtribDecl ContAtrib .)
+    while           reduce using rule 6 (ContAtrib -> , AtribDecl ContAtrib .)
+    repeat          reduce using rule 6 (ContAtrib -> , AtribDecl ContAtrib .)
+    for             reduce using rule 6 (ContAtrib -> , AtribDecl ContAtrib .)
+    $end            reduce using rule 6 (ContAtrib -> , AtribDecl ContAtrib .)
+
+
+state 99
+
+    (9) AtribDecl -> id [ num ] .
+
+    ,               reduce using rule 9 (AtribDecl -> id [ num ] .)
+    int             reduce using rule 9 (AtribDecl -> id [ num ] .)
+    read            reduce using rule 9 (AtribDecl -> id [ num ] .)
+    print           reduce using rule 9 (AtribDecl -> id [ num ] .)
+    id              reduce using rule 9 (AtribDecl -> id [ num ] .)
+    if              reduce using rule 9 (AtribDecl -> id [ num ] .)
+    while           reduce using rule 9 (AtribDecl -> id [ num ] .)
+    repeat          reduce using rule 9 (AtribDecl -> id [ num ] .)
+    for             reduce using rule 9 (AtribDecl -> id [ num ] .)
+    $end            reduce using rule 9 (AtribDecl -> id [ num ] .)
+
+
+state 100
+
+    (22) Ler -> read id [ Exp ] .
+
+    read            reduce using rule 22 (Ler -> read id [ Exp ] .)
+    print           reduce using rule 22 (Ler -> read id [ Exp ] .)
+    id              reduce using rule 22 (Ler -> read id [ Exp ] .)
+    if              reduce using rule 22 (Ler -> read id [ Exp ] .)
+    while           reduce using rule 22 (Ler -> read id [ Exp ] .)
+    repeat          reduce using rule 22 (Ler -> read id [ Exp ] .)
+    for             reduce using rule 22 (Ler -> read id [ Exp ] .)
+    $end            reduce using rule 22 (Ler -> read id [ Exp ] .)
+    }               reduce using rule 22 (Ler -> read id [ Exp ] .)
+
+
+state 101
+
+    (25) AtribProg -> id [ Exp ] = . Exp
+    (48) Exp -> . Exp + Termo
+    (49) Exp -> . Exp - Termo
+    (50) Exp -> . Termo
+    (51) Termo -> . Termo * Factor
+    (52) Termo -> . Termo / Factor
+    (53) Termo -> . Termo % Factor
+    (54) Termo -> . Factor
+    (55) Factor -> . ( Exp )
+    (56) Factor -> . num
+    (57) Factor -> . id
+    (58) Factor -> . id [ Exp ]
+
+    (               shift and go to state 33
+    num             shift and go to state 34
+    id              shift and go to state 35
+
+    Exp                            shift and go to state 110
+    Termo                          shift and go to state 31
+    Factor                         shift and go to state 32
+
+state 102
+
+    (58) Factor -> id [ Exp ] .
+
+    *               reduce using rule 58 (Factor -> id [ Exp ] .)
+    /               reduce using rule 58 (Factor -> id [ Exp ] .)
+    %               reduce using rule 58 (Factor -> id [ Exp ] .)
+    >               reduce using rule 58 (Factor -> id [ Exp ] .)
+    <               reduce using rule 58 (Factor -> id [ Exp ] .)
+    Meq             reduce using rule 58 (Factor -> id [ Exp ] .)
+    meq             reduce using rule 58 (Factor -> id [ Exp ] .)
+    dif             reduce using rule 58 (Factor -> id [ Exp ] .)
+    eq              reduce using rule 58 (Factor -> id [ Exp ] .)
+    +               reduce using rule 58 (Factor -> id [ Exp ] .)
+    -               reduce using rule 58 (Factor -> id [ Exp ] .)
+    read            reduce using rule 58 (Factor -> id [ Exp ] .)
+    print           reduce using rule 58 (Factor -> id [ Exp ] .)
+    id              reduce using rule 58 (Factor -> id [ Exp ] .)
+    if              reduce using rule 58 (Factor -> id [ Exp ] .)
+    while           reduce using rule 58 (Factor -> id [ Exp ] .)
+    repeat          reduce using rule 58 (Factor -> id [ Exp ] .)
+    for             reduce using rule 58 (Factor -> id [ Exp ] .)
+    $end            reduce using rule 58 (Factor -> id [ Exp ] .)
+    }               reduce using rule 58 (Factor -> id [ Exp ] .)
+    ;               reduce using rule 58 (Factor -> id [ Exp ] .)
+    )               reduce using rule 58 (Factor -> id [ Exp ] .)
+    ]               reduce using rule 58 (Factor -> id [ Exp ] .)
+    and             reduce using rule 58 (Factor -> id [ Exp ] .)
+    or              reduce using rule 58 (Factor -> id [ Exp ] .)
+    ,               reduce using rule 58 (Factor -> id [ Exp ] .)
+    int             reduce using rule 58 (Factor -> id [ Exp ] .)
+
+
+state 103
+
+    (40) Cond3 -> ( Cond ) .
+
+    and             reduce using rule 40 (Cond3 -> ( Cond ) .)
+    )               reduce using rule 40 (Cond3 -> ( Cond ) .)
+    or              reduce using rule 40 (Cond3 -> ( Cond ) .)
+    ;               reduce using rule 40 (Cond3 -> ( Cond ) .)
+    read            reduce using rule 40 (Cond3 -> ( Cond ) .)
+    print           reduce using rule 40 (Cond3 -> ( Cond ) .)
+    id              reduce using rule 40 (Cond3 -> ( Cond ) .)
+    if              reduce using rule 40 (Cond3 -> ( Cond ) .)
+    while           reduce using rule 40 (Cond3 -> ( Cond ) .)
+    repeat          reduce using rule 40 (Cond3 -> ( Cond ) .)
+    for             reduce using rule 40 (Cond3 -> ( Cond ) .)
+    $end            reduce using rule 40 (Cond3 -> ( Cond ) .)
+    }               reduce using rule 40 (Cond3 -> ( Cond ) .)
+
+
+state 104
+
+    (26) If -> if ( Cond ) { . BlocoPrograma } Else
+    (12) BlocoPrograma -> . Programa BlocoPrograma
+    (13) BlocoPrograma -> .
+    (14) Programa -> . Ler
+    (15) Programa -> . Escrever
+    (16) Programa -> . AtribProg
+    (17) Programa -> . If
+    (18) Programa -> . While
+    (19) Programa -> . Repeat
+    (20) Programa -> . For
+    (21) Ler -> . read id
+    (22) Ler -> . read id [ Exp ]
+    (23) Escrever -> . print RelExp
+    (24) AtribProg -> . id = Exp
+    (25) AtribProg -> . id [ Exp ] = Exp
+    (26) If -> . if ( Cond ) { BlocoPrograma } Else
+    (29) While -> . while ( Cond ) do { BlocoPrograma }
+    (30) Repeat -> . repeat { BlocoPrograma } until Cond
+    (31) For -> . for ( AtribFor ; Cond ; AtribProg ) do { BlocoPrograma }
+
+    }               reduce using rule 13 (BlocoPrograma -> .)
+    read            shift and go to state 14
+    print           shift and go to state 16
+    id              shift and go to state 15
+    if              shift and go to state 17
+    while           shift and go to state 18
+    repeat          shift and go to state 19
+    for             shift and go to state 20
+
+    BlocoPrograma                  shift and go to state 111
+    Programa                       shift and go to state 6
+    Ler                            shift and go to state 7
+    Escrever                       shift and go to state 8
+    AtribProg                      shift and go to state 9
+    If                             shift and go to state 10
+    While                          shift and go to state 11
+    Repeat                         shift and go to state 12
+    For                            shift and go to state 13
+
+state 105
+
+    (34) Cond -> Cond or Cond2 .
+    (36) Cond2 -> Cond2 . and Cond3
+
+  ! shift/reduce conflict for and resolved as shift
+    )               reduce using rule 34 (Cond -> Cond or Cond2 .)
+    or              reduce using rule 34 (Cond -> Cond or Cond2 .)
+    ;               reduce using rule 34 (Cond -> Cond or Cond2 .)
+    read            reduce using rule 34 (Cond -> Cond or Cond2 .)
+    print           reduce using rule 34 (Cond -> Cond or Cond2 .)
+    id              reduce using rule 34 (Cond -> Cond or Cond2 .)
+    if              reduce using rule 34 (Cond -> Cond or Cond2 .)
+    while           reduce using rule 34 (Cond -> Cond or Cond2 .)
+    repeat          reduce using rule 34 (Cond -> Cond or Cond2 .)
+    for             reduce using rule 34 (Cond -> Cond or Cond2 .)
+    $end            reduce using rule 34 (Cond -> Cond or Cond2 .)
+    }               reduce using rule 34 (Cond -> Cond or Cond2 .)
+    and             shift and go to state 93
+
+  ! and             [ reduce using rule 34 (Cond -> Cond or Cond2 .) ]
+
+
+state 106
+
+    (36) Cond2 -> Cond2 and Cond3 .
+
+    and             reduce using rule 36 (Cond2 -> Cond2 and Cond3 .)
+    )               reduce using rule 36 (Cond2 -> Cond2 and Cond3 .)
+    or              reduce using rule 36 (Cond2 -> Cond2 and Cond3 .)
+    ;               reduce using rule 36 (Cond2 -> Cond2 and Cond3 .)
+    read            reduce using rule 36 (Cond2 -> Cond2 and Cond3 .)
+    print           reduce using rule 36 (Cond2 -> Cond2 and Cond3 .)
+    id              reduce using rule 36 (Cond2 -> Cond2 and Cond3 .)
+    if              reduce using rule 36 (Cond2 -> Cond2 and Cond3 .)
+    while           reduce using rule 36 (Cond2 -> Cond2 and Cond3 .)
+    repeat          reduce using rule 36 (Cond2 -> Cond2 and Cond3 .)
+    for             reduce using rule 36 (Cond2 -> Cond2 and Cond3 .)
+    $end            reduce using rule 36 (Cond2 -> Cond2 and Cond3 .)
+    }               reduce using rule 36 (Cond2 -> Cond2 and Cond3 .)
+
+
+state 107
+
+    (29) While -> while ( Cond ) do . { BlocoPrograma }
+
+    {               shift and go to state 112
+
+
+state 108
+
+    (30) Repeat -> repeat { BlocoPrograma } until . Cond
+    (34) Cond -> . Cond or Cond2
+    (35) Cond -> . Cond2
+    (36) Cond2 -> . Cond2 and Cond3
+    (37) Cond2 -> . Cond3
+    (38) Cond3 -> . not Cond
+    (39) Cond3 -> . RelExp
+    (40) Cond3 -> . ( Cond )
+    (41) RelExp -> . Exp > Exp
+    (42) RelExp -> . Exp < Exp
+    (43) RelExp -> . Exp Meq Exp
+    (44) RelExp -> . Exp meq Exp
+    (45) RelExp -> . Exp dif Exp
+    (46) RelExp -> . Exp eq Exp
+    (47) RelExp -> . Exp
+    (48) Exp -> . Exp + Termo
+    (49) Exp -> . Exp - Termo
+    (50) Exp -> . Termo
+    (51) Termo -> . Termo * Factor
+    (52) Termo -> . Termo / Factor
+    (53) Termo -> . Termo % Factor
+    (54) Termo -> . Factor
+    (55) Factor -> . ( Exp )
+    (56) Factor -> . num
+    (57) Factor -> . id
+    (58) Factor -> . id [ Exp ]
+
+    not             shift and go to state 65
+    (               shift and go to state 61
+    num             shift and go to state 34
+    id              shift and go to state 35
+
+    Cond                           shift and go to state 113
+    Cond2                          shift and go to state 63
+    Cond3                          shift and go to state 64
+    RelExp                         shift and go to state 66
+    Exp                            shift and go to state 30
+    Termo                          shift and go to state 31
+    Factor                         shift and go to state 32
+
+state 109
+
+    (31) For -> for ( AtribFor ; Cond . ; AtribProg ) do { BlocoPrograma }
+    (34) Cond -> Cond . or Cond2
+
+    ;               shift and go to state 114
+    or              shift and go to state 92
+
+
+state 110
+
+    (25) AtribProg -> id [ Exp ] = Exp .
+    (48) Exp -> Exp . + Termo
+    (49) Exp -> Exp . - Termo
+
+    read            reduce using rule 25 (AtribProg -> id [ Exp ] = Exp .)
+    print           reduce using rule 25 (AtribProg -> id [ Exp ] = Exp .)
+    id              reduce using rule 25 (AtribProg -> id [ Exp ] = Exp .)
+    if              reduce using rule 25 (AtribProg -> id [ Exp ] = Exp .)
+    while           reduce using rule 25 (AtribProg -> id [ Exp ] = Exp .)
+    repeat          reduce using rule 25 (AtribProg -> id [ Exp ] = Exp .)
+    for             reduce using rule 25 (AtribProg -> id [ Exp ] = Exp .)
+    $end            reduce using rule 25 (AtribProg -> id [ Exp ] = Exp .)
+    }               reduce using rule 25 (AtribProg -> id [ Exp ] = Exp .)
+    ;               reduce using rule 25 (AtribProg -> id [ Exp ] = Exp .)
+    )               reduce using rule 25 (AtribProg -> id [ Exp ] = Exp .)
+    +               shift and go to state 54
+    -               shift and go to state 55
+
+
+state 111
+
+    (26) If -> if ( Cond ) { BlocoPrograma . } Else
+
+    }               shift and go to state 115
+
+
+state 112
+
+    (29) While -> while ( Cond ) do { . BlocoPrograma }
+    (12) BlocoPrograma -> . Programa BlocoPrograma
+    (13) BlocoPrograma -> .
+    (14) Programa -> . Ler
+    (15) Programa -> . Escrever
+    (16) Programa -> . AtribProg
+    (17) Programa -> . If
+    (18) Programa -> . While
+    (19) Programa -> . Repeat
+    (20) Programa -> . For
+    (21) Ler -> . read id
+    (22) Ler -> . read id [ Exp ]
+    (23) Escrever -> . print RelExp
+    (24) AtribProg -> . id = Exp
+    (25) AtribProg -> . id [ Exp ] = Exp
+    (26) If -> . if ( Cond ) { BlocoPrograma } Else
+    (29) While -> . while ( Cond ) do { BlocoPrograma }
+    (30) Repeat -> . repeat { BlocoPrograma } until Cond
+    (31) For -> . for ( AtribFor ; Cond ; AtribProg ) do { BlocoPrograma }
+
+    }               reduce using rule 13 (BlocoPrograma -> .)
+    read            shift and go to state 14
+    print           shift and go to state 16
+    id              shift and go to state 15
+    if              shift and go to state 17
+    while           shift and go to state 18
+    repeat          shift and go to state 19
+    for             shift and go to state 20
+
+    BlocoPrograma                  shift and go to state 116
+    Programa                       shift and go to state 6
+    Ler                            shift and go to state 7
+    Escrever                       shift and go to state 8
+    AtribProg                      shift and go to state 9
+    If                             shift and go to state 10
+    While                          shift and go to state 11
+    Repeat                         shift and go to state 12
+    For                            shift and go to state 13
+
+state 113
+
+    (30) Repeat -> repeat { BlocoPrograma } until Cond .
+    (34) Cond -> Cond . or Cond2
+
+    read            reduce using rule 30 (Repeat -> repeat { BlocoPrograma } until Cond .)
+    print           reduce using rule 30 (Repeat -> repeat { BlocoPrograma } until Cond .)
+    id              reduce using rule 30 (Repeat -> repeat { BlocoPrograma } until Cond .)
+    if              reduce using rule 30 (Repeat -> repeat { BlocoPrograma } until Cond .)
+    while           reduce using rule 30 (Repeat -> repeat { BlocoPrograma } until Cond .)
+    repeat          reduce using rule 30 (Repeat -> repeat { BlocoPrograma } until Cond .)
+    for             reduce using rule 30 (Repeat -> repeat { BlocoPrograma } until Cond .)
+    $end            reduce using rule 30 (Repeat -> repeat { BlocoPrograma } until Cond .)
+    }               reduce using rule 30 (Repeat -> repeat { BlocoPrograma } until Cond .)
+    or              shift and go to state 92
+
+
+state 114
+
+    (31) For -> for ( AtribFor ; Cond ; . AtribProg ) do { BlocoPrograma }
+    (24) AtribProg -> . id = Exp
+    (25) AtribProg -> . id [ Exp ] = Exp
+
+    id              shift and go to state 15
+
+    AtribProg                      shift and go to state 117
+
+state 115
+
+    (26) If -> if ( Cond ) { BlocoPrograma } . Else
+    (27) Else -> . else { BlocoPrograma }
+    (28) Else -> .
+
+    else            shift and go to state 119
+    read            reduce using rule 28 (Else -> .)
+    print           reduce using rule 28 (Else -> .)
+    id              reduce using rule 28 (Else -> .)
+    if              reduce using rule 28 (Else -> .)
+    while           reduce using rule 28 (Else -> .)
+    repeat          reduce using rule 28 (Else -> .)
+    for             reduce using rule 28 (Else -> .)
+    $end            reduce using rule 28 (Else -> .)
+    }               reduce using rule 28 (Else -> .)
+
+    Else                           shift and go to state 118
+
+state 116
+
+    (29) While -> while ( Cond ) do { BlocoPrograma . }
+
+    }               shift and go to state 120
+
+
+state 117
+
+    (31) For -> for ( AtribFor ; Cond ; AtribProg . ) do { BlocoPrograma }
+
+    )               shift and go to state 121
+
+
+state 118
+
+    (26) If -> if ( Cond ) { BlocoPrograma } Else .
+
+    read            reduce using rule 26 (If -> if ( Cond ) { BlocoPrograma } Else .)
+    print           reduce using rule 26 (If -> if ( Cond ) { BlocoPrograma } Else .)
+    id              reduce using rule 26 (If -> if ( Cond ) { BlocoPrograma } Else .)
+    if              reduce using rule 26 (If -> if ( Cond ) { BlocoPrograma } Else .)
+    while           reduce using rule 26 (If -> if ( Cond ) { BlocoPrograma } Else .)
+    repeat          reduce using rule 26 (If -> if ( Cond ) { BlocoPrograma } Else .)
+    for             reduce using rule 26 (If -> if ( Cond ) { BlocoPrograma } Else .)
+    $end            reduce using rule 26 (If -> if ( Cond ) { BlocoPrograma } Else .)
+    }               reduce using rule 26 (If -> if ( Cond ) { BlocoPrograma } Else .)
+
+
+state 119
+
+    (27) Else -> else . { BlocoPrograma }
+
+    {               shift and go to state 122
+
+
+state 120
+
+    (29) While -> while ( Cond ) do { BlocoPrograma } .
+
+    read            reduce using rule 29 (While -> while ( Cond ) do { BlocoPrograma } .)
+    print           reduce using rule 29 (While -> while ( Cond ) do { BlocoPrograma } .)
+    id              reduce using rule 29 (While -> while ( Cond ) do { BlocoPrograma } .)
+    if              reduce using rule 29 (While -> while ( Cond ) do { BlocoPrograma } .)
+    while           reduce using rule 29 (While -> while ( Cond ) do { BlocoPrograma } .)
+    repeat          reduce using rule 29 (While -> while ( Cond ) do { BlocoPrograma } .)
+    for             reduce using rule 29 (While -> while ( Cond ) do { BlocoPrograma } .)
+    $end            reduce using rule 29 (While -> while ( Cond ) do { BlocoPrograma } .)
+    }               reduce using rule 29 (While -> while ( Cond ) do { BlocoPrograma } .)
+
+
+state 121
+
+    (31) For -> for ( AtribFor ; Cond ; AtribProg ) . do { BlocoPrograma }
+
+    do              shift and go to state 123
+
+
+state 122
+
+    (27) Else -> else { . BlocoPrograma }
+    (12) BlocoPrograma -> . Programa BlocoPrograma
+    (13) BlocoPrograma -> .
+    (14) Programa -> . Ler
+    (15) Programa -> . Escrever
+    (16) Programa -> . AtribProg
+    (17) Programa -> . If
+    (18) Programa -> . While
+    (19) Programa -> . Repeat
+    (20) Programa -> . For
+    (21) Ler -> . read id
+    (22) Ler -> . read id [ Exp ]
+    (23) Escrever -> . print RelExp
+    (24) AtribProg -> . id = Exp
+    (25) AtribProg -> . id [ Exp ] = Exp
+    (26) If -> . if ( Cond ) { BlocoPrograma } Else
+    (29) While -> . while ( Cond ) do { BlocoPrograma }
+    (30) Repeat -> . repeat { BlocoPrograma } until Cond
+    (31) For -> . for ( AtribFor ; Cond ; AtribProg ) do { BlocoPrograma }
+
+    }               reduce using rule 13 (BlocoPrograma -> .)
+    read            shift and go to state 14
+    print           shift and go to state 16
+    id              shift and go to state 15
+    if              shift and go to state 17
+    while           shift and go to state 18
+    repeat          shift and go to state 19
+    for             shift and go to state 20
+
+    BlocoPrograma                  shift and go to state 124
+    Programa                       shift and go to state 6
+    Ler                            shift and go to state 7
+    Escrever                       shift and go to state 8
+    AtribProg                      shift and go to state 9
+    If                             shift and go to state 10
+    While                          shift and go to state 11
+    Repeat                         shift and go to state 12
+    For                            shift and go to state 13
+
+state 123
+
+    (31) For -> for ( AtribFor ; Cond ; AtribProg ) do . { BlocoPrograma }
+
+    {               shift and go to state 125
+
+
+state 124
+
+    (27) Else -> else { BlocoPrograma . }
+
+    }               shift and go to state 126
+
+
+state 125
+
+    (31) For -> for ( AtribFor ; Cond ; AtribProg ) do { . BlocoPrograma }
+    (12) BlocoPrograma -> . Programa BlocoPrograma
+    (13) BlocoPrograma -> .
+    (14) Programa -> . Ler
+    (15) Programa -> . Escrever
+    (16) Programa -> . AtribProg
+    (17) Programa -> . If
+    (18) Programa -> . While
+    (19) Programa -> . Repeat
+    (20) Programa -> . For
+    (21) Ler -> . read id
+    (22) Ler -> . read id [ Exp ]
+    (23) Escrever -> . print RelExp
+    (24) AtribProg -> . id = Exp
+    (25) AtribProg -> . id [ Exp ] = Exp
+    (26) If -> . if ( Cond ) { BlocoPrograma } Else
+    (29) While -> . while ( Cond ) do { BlocoPrograma }
+    (30) Repeat -> . repeat { BlocoPrograma } until Cond
+    (31) For -> . for ( AtribFor ; Cond ; AtribProg ) do { BlocoPrograma }
+
+    }               reduce using rule 13 (BlocoPrograma -> .)
+    read            shift and go to state 14
+    print           shift and go to state 16
+    id              shift and go to state 15
+    if              shift and go to state 17
+    while           shift and go to state 18
+    repeat          shift and go to state 19
+    for             shift and go to state 20
+
+    AtribProg                      shift and go to state 9
+    BlocoPrograma                  shift and go to state 127
+    Programa                       shift and go to state 6
+    Ler                            shift and go to state 7
+    Escrever                       shift and go to state 8
+    If                             shift and go to state 10
+    While                          shift and go to state 11
+    Repeat                         shift and go to state 12
+    For                            shift and go to state 13
+
+state 126
+
+    (27) Else -> else { BlocoPrograma } .
+
+    read            reduce using rule 27 (Else -> else { BlocoPrograma } .)
+    print           reduce using rule 27 (Else -> else { BlocoPrograma } .)
+    id              reduce using rule 27 (Else -> else { BlocoPrograma } .)
+    if              reduce using rule 27 (Else -> else { BlocoPrograma } .)
+    while           reduce using rule 27 (Else -> else { BlocoPrograma } .)
+    repeat          reduce using rule 27 (Else -> else { BlocoPrograma } .)
+    for             reduce using rule 27 (Else -> else { BlocoPrograma } .)
+    $end            reduce using rule 27 (Else -> else { BlocoPrograma } .)
+    }               reduce using rule 27 (Else -> else { BlocoPrograma } .)
+
+
+state 127
+
+    (31) For -> for ( AtribFor ; Cond ; AtribProg ) do { BlocoPrograma . }
+
+    }               shift and go to state 128
+
+
+state 128
+
+    (31) For -> for ( AtribFor ; Cond ; AtribProg ) do { BlocoPrograma } .
+
+    read            reduce using rule 31 (For -> for ( AtribFor ; Cond ; AtribProg ) do { BlocoPrograma } .)
+    print           reduce using rule 31 (For -> for ( AtribFor ; Cond ; AtribProg ) do { BlocoPrograma } .)
+    id              reduce using rule 31 (For -> for ( AtribFor ; Cond ; AtribProg ) do { BlocoPrograma } .)
+    if              reduce using rule 31 (For -> for ( AtribFor ; Cond ; AtribProg ) do { BlocoPrograma } .)
+    while           reduce using rule 31 (For -> for ( AtribFor ; Cond ; AtribProg ) do { BlocoPrograma } .)
+    repeat          reduce using rule 31 (For -> for ( AtribFor ; Cond ; AtribProg ) do { BlocoPrograma } .)
+    for             reduce using rule 31 (For -> for ( AtribFor ; Cond ; AtribProg ) do { BlocoPrograma } .)
+    $end            reduce using rule 31 (For -> for ( AtribFor ; Cond ; AtribProg ) do { BlocoPrograma } .)
+    }               reduce using rule 31 (For -> for ( AtribFor ; Cond ; AtribProg ) do { BlocoPrograma } .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for and in state 63 resolved as shift
+WARNING: shift/reduce conflict for ) in state 90 resolved as shift
+WARNING: shift/reduce conflict for or in state 94 resolved as shift
+WARNING: shift/reduce conflict for and in state 105 resolved as shift

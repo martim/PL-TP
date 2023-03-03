@@ -1,0 +1,21 @@
+    PUSHI 0
+    PUSHI 0
+START
+    READ
+    ATOI
+    STOREG 0
+    READ
+    ATOI
+    STOREG 1
+    PUSHG 0
+    PUSHG 1
+    SUP
+    JZ FIMIF1
+    PUSHG 0
+    PUSHG 1
+    ADD
+    WRITEI
+FIMIF1:
+    PUSHG 0
+    WRITEI
+STOP

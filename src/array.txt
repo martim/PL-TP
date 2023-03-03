@@ -1,0 +1,7 @@
+int array[10], i = 0
+while(i < 10)
+do{
+    read array[i]
+    i = i + 1
+}
+array[3] = 2000

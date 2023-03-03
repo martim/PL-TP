@@ -1,0 +1,9 @@
+int n, i = 0, x, prod = 1
+read n
+while (i < n)
+do{
+    read x
+    prod = prod * x
+    i = i + 1
+}
+print prod

@@ -1,0 +1,12 @@
+int n, x = 0, i = 1, menor
+read n
+read menor
+while(i < n)
+do{
+    read x
+    if (x < menor){
+        menor = x
+    }
+    i = i + 1
+}
+print menor

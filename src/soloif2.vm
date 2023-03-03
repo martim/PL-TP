@@ -1,0 +1,25 @@
+    PUSHI 0
+    PUSHI 0
+START
+    READ
+    ATOI
+    STOREG 0
+    READ
+    ATOI
+    STOREG 1
+    
+    PUSHG 0
+    PUSHG 1
+    EQUAL
+    NOT
+    JZ ELSE1
+    PUSHG 0
+    PUSHG 1
+    ADD
+    WRITEI
+    JUMP FIMIF1
+ELSE1:
+FIMIF1:
+    PUSHG 0
+    WRITEI
+STOP

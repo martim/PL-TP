@@ -1,0 +1,11 @@
+int a
+int b
+int c = 10
+read a
+read b
+if (a > b and a > c or not b > c){
+    print a + b <= b - a
+}
+else {
+    print 1000
+}

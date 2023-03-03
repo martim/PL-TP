@@ -1,0 +1,14 @@
+int i, b
+read i
+read b
+while(i <= b) 
+do{
+    if(i % 2 == 0){
+        print i
+    } else {
+        if(i % 2 == 1){
+            print b
+        }
+    }
+    i = i + 1
+}

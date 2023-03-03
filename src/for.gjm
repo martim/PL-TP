@@ -1,0 +1,7 @@
+int n
+int i = 10
+for(n = 0; n < i; n = n + 1)
+do{
+
+}
+print n == i

@@ -1,0 +1,58 @@
+S -> BlocoDecl BlocoPrograma
+
+BlocoDecl -> Decl BlocoDecl
+        | з
+
+Decl -> int AtribList
+
+AtribList -> Atrib ContAtrib
+
+Atrib -> id Atribution
+
+ContAtrib -> ',' Atrib ContAtrib
+            |   з
+
+Atribution -> '=' Exp
+            |   з
+
+BlocoPrograma -> Programa BlocoPrograma
+            |   з
+
+Programa -> read id
+        |   print Exp
+        |   id '=' Exp
+        |   if '(' Cond ')' '{' BlocoPrograma '}' Else
+        |   while '( Cond ')' do '{' BlocoPrograma '}'
+
+Else -> else '{' BlocoPrograma '}'
+        |   з
+
+Cond -> Cond OR Cond2
+    | Cond2 // LA = ')'
+
+Cond2 -> Cond2 AND Cond3  //LA = AND
+    | Cond3
+
+Cond3 -> NOT Cond
+    | ExpRel
+    | '(' Cond ')'
+
+ExpRel -> Exp '>' Exp
+        | Exp '<' Exp
+        | Exp '<=' Exp
+        | Exp '>=' Exp
+        | Exp '!=' Exp
+        | Exp '==' Exp
+        | Exp
+
+Exp -> Exp '+' Termo
+     | Exp '-' Termo
+     | Termo
+
+Termo -> Termo '*' Factor
+       |  Termo '/' Factor
+       | Factor
+
+Factor -> '(' Exp ')'
+        | num
+        | id

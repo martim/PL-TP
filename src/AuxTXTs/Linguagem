@@ -1,0 +1,25 @@
+Variáveis:
+    Inteiros:
+        int i
+        int i = 2
+
+Instruções:
+    i = 2
+    a = 2 - 1
+    b = 3 * 2
+    c = 2 / 1
+
+I/O:
+    STDOUT:
+        print i
+
+    STDIN:
+        read i
+
+Condicionais:
+    if(cond)
+    else
+
+Ciclos:
+    while(cond)
+    do{programa}
